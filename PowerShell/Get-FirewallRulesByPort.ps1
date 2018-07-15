@@ -1,0 +1,1 @@
+﻿Get-NetFirewallPortFilter -Protocol TCP | Where { $_.localport -eq '80' -or $_.localport -eq '443' -or $_.localport -eq '2701' -or $_.localport -eq '3389' -or $_.localport -eq '5985' -or $_.localport -eq '10123' } | Get-NetFirewallRule | Sort-Object DisplayName | Format-Table -AutoSize
