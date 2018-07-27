@@ -32,7 +32,7 @@ TRY {
 		}
 	}
 	# Parse Name, Version, Year, and bitness for each app
-	Write-Log -Message "Check for running application(s) [$runningAppsCheck]..." -Source ${CmdletName}
+	Write-Host "Check for running application(s) [$runningAppsCheck]..."
 	FOREACH ($regKeyApp IN $regKeyApplication) {
 		$OfficeVersion = $regKeyApp | ForEach-Object -Process {
 			$_.DisplayVersion.SubString(0, 4)
