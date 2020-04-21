@@ -64,7 +64,7 @@ Expected Behavior - Will prompt to close existing processes before installing
 
 Thank you!
 
-Nic
+
 "@
     
 $CC = @("First Last <f.last@domain.com>")
