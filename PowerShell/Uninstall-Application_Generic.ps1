@@ -5,7 +5,7 @@
     Updated by: Nicolas Wendlowsky (https://github.com/hkystar35)
     Updated on: 2021/05/03
     
-    Version 1.1 - Changed line 127 to log entry instead of of EXIT since it's inside a foreach loop and could exit before trying other values in App name array
+    Version 1.1 - Changed 'If ($null -eq $Software)' to log entry instead of of EXIT since it's inside a foreach loop and could exit before trying other values in App name array
                 - Added ShouldProcess for testing
                 - Forced log entries during ShouldProcess
                 - Created $AppNameStringToMatch variable to change line 122 from static LIKE string
