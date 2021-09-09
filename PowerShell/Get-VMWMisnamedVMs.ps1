@@ -9,10 +9,10 @@ function Get-VMWMisnamedVMs {
 }
 
 $hyperVisors = @(
-    'vc-ustwf-01.af.lan',
-    'vc-nor-01.af.lan',
-    'vc-soho-01.af.lan',
-    'vc-au-01.af.lan'
+    'vc-ustwf-01.contoso.com',
+    'vc-nor-01.contoso.com',
+    'vc-soho-01.contoso.com',
+    'vc-au-01.contoso.com'
 )
 
 $mismatchedVMs = @(

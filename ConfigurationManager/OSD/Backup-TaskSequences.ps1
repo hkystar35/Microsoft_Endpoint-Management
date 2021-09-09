@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Exports all Task Sequences (without content) to specified server share and emails recipients upon completion.
 	
@@ -21,8 +21,8 @@
 		===========================================================================
 		
 		Created on:   	08/30/2019 3:07:56 PM
-		Created by:   	NWendlowsky@paylocity.com
-		Organization: 	Paylocity
+		Created by:   	hkystar35@contoso.com
+		Organization: 	contoso
 		Filename:       Backup-TaskSequences.ps1
 		===========================================================================
 #>
@@ -30,7 +30,7 @@
 PARAM
 (
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$SiteCode = 'PAY',
-	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$MailTo = 'EUCEngineers@paylocity.com',
+	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$MailTo = 'EUCEngineers@contoso.com',
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][ValidateScript({
 			[System.IO.Directory]::Exists($_)
 		})][string]$BackupFolder = '\\INT-SCCM-PR-01\TS\Backups'
@@ -49,7 +49,7 @@ BEGIN {
 		(
 			[Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$Body,
 			[Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$To,
-			[ValidateNotNullOrEmpty()]$From = "$($env:COMPUTERNAME)@paylocity.com",
+			[ValidateNotNullOrEmpty()]$From = "$($env:COMPUTERNAME)@contoso.com",
 			[ValidateNotNullOrEmpty()]$CC,
 			$CurrentScriptName = $ScriptName,
 			[ValidateNotNullOrEmpty()][string]$Subject,
@@ -100,7 +100,7 @@ BEGIN {
 				$EmailArgs += @{
 					To		   = $To
 					From	   = $From
-					SmtpServer = 'post.paylocity.com'
+					SmtpServer = 'post.contoso.com'
 					Priority   = $Priority
 				}
 				

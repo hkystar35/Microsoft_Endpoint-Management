@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		A brief description of the !Template.ps1 file.
 	
@@ -27,8 +27,8 @@
 		===========================================================================
 		
 		Created on:   	4/16/2020 11:39:44
-		Created by:   	Nicolas.Wendlowsky@chobani.com
-		Organization: 	Chobani
+		Created by:   	hkystar35@contoso.com
+		Organization: 	contoso
 		Filename:	      Get-SQLInstallations.ps1
 		===========================================================================
 #>

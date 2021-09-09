@@ -1,5 +1,5 @@
-﻿$MeltdownSUG = 'Meltdown Patches - 2018-01-04'
-$Description = 'Meltdown OS patches for Windows 8.1 and 10. See ticket https://paylocity.zendesk.com/agent/tickets/74849 for more.'
+$MeltdownSUG = 'Meltdown Patches - 2018-01-04'
+$Description = 'Meltdown OS patches for Windows 8.1 and 10. See ticket https://contoso.zendesk.com/agent/tickets/74849 for more.'
 $ThawedCollections = Get-CMDeviceCollection -Name "ZeroDayUpdates_*"
 $ThawedCollections | foreach{
     $NameSplit = $_.Name -split ('_')

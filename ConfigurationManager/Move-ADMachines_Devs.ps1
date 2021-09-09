@@ -1,4 +1,4 @@
-﻿$devmachines = 'AARONCARLO',
+$devmachines = 'AARONCARLO',
 'JWIEGERTWIN10',
 'RAYMONDKRAUSE',
 'SPENCERFLANDERS',
@@ -78,12 +78,12 @@
 $Mpaths = @()
 $devmachines | %{
     #
-    #$Move += Get-ADComputer 'SERGEYVINOKUROV' | Move-ADObject -TargetPath 'OU=GPO Test,OU=Development,OU=Headquarters,DC=paylocity,DC=com' -WhatIf
+    #$Move += Get-ADComputer 'SERGEYVINOKUROV' | Move-ADObject -TargetPath 'OU=GPO Test,OU=Development,OU=Headquarters,DC=contoso,DC=com' -WhatIf
     $Paths = Get-ADComputer $_ | select Name,@{L="Path";E={$_.DistinguishedName -replace "CN=$($_.name),",""}}
     foreach($Path in $Paths){
-        IF($Path.path -ne 'OU=GPO Test,OU=Development,OU=Headquarters,DC=paylocity,DC=com'){
+        IF($Path.path -ne 'OU=GPO Test,OU=Development,OU=Headquarters,DC=contoso,DC=com'){
             Write-Host "Current Path: " $Path.Path
-            Get-ADComputer $Path.Name | Move-ADObject -TargetPath 'OU=GPO Test,OU=Development,OU=Headquarters,DC=paylocity,DC=com' #-WhatIf
+            Get-ADComputer $Path.Name | Move-ADObject -TargetPath 'OU=GPO Test,OU=Development,OU=Headquarters,DC=contoso,DC=com' #-WhatIf
             $NewPath = Get-ADComputer $Path.name | select Name,@{L="Path";E={$_.DistinguishedName -replace "CN=$($_.name),",""}}
             Write-Host "New Path:     " $NewPath.Path
             $Mpaths += $NewPath

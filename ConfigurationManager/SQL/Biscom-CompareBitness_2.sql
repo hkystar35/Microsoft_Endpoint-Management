@@ -12,7 +12,7 @@ SELECT DISTINCT
   INNER JOIN dbo.v_Add_REMOVE_PROGRAMS As ARP On SYS.ResourceID = ARP.ResourceID 
   INNER JOIN dbo.v_Add_REMOVE_PROGRAMS As ARP2 On SYS.ResourceID = ARP2.ResourceID 
  WHERE 
- sys.Name0 = 'NICWENDLOWSKY'   and 
+ sys.Name0 = 'NIChkystar35'   and 
  (ARP.DisplayName0 LIKE '%Microsoft % Standard%'
  OR ARP.DisplayName0 LIKE 'Microsoft % Professional%'
  OR ARP.DisplayName0 LIKE 'Microsoft % Enterprise %') and ARP2.DisplayName0 like '%Biscom%'

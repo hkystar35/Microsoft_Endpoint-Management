@@ -1,4 +1,4 @@
-﻿$machines = 'NICWENDLOWSKY','CLINTSMITH','DANMADAY','AustinWimberly2','LGullett','JPalmer','ATurner'
+$machines = 'NIChkystar35','CLINTSMITH','DANMADAY','AustinWimberly2','LGullett','JPalmer','ATurner'
 $ADTable = @()
 
 $machines | foreach{

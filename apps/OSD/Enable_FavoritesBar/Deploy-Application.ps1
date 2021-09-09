@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 	This script performs the installation or uninstallation of an application(s).
 .DESCRIPTION
@@ -64,7 +64,7 @@ Try {
 	[string]$appRevision = '01'
 	[string]$appScriptVersion = '1.0.0'
 	[string]$appScriptDate = '12/12/2017'
-	[string]$appScriptAuthor = 'Nicolas Wendlowsky'
+	[string]$appScriptAuthor = 'hkystar35'
 	##*===============================================
     <##Code to switch Deploy Mode based on runnings applications
 	## Code to switch Deploy Mode

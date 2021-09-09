@@ -2,7 +2,7 @@
     Script to Remove existing MSI installations
     Credit to: Patch My PC (patchmypc.com), original script https://patchmypc.com/scupcatalog/downloads/scripts/PatchMyPC-Remove-JDK8-64bit-Only.ps1
     Version 1.1
-    Updated by: Nicolas Wendlowsky (https://github.com/hkystar35)
+    Updated by: hkystar35 (https://github.com/hkystar35)
     Updated on: 2021/05/03
     
     Version 1.1 - Changed 'If ($null -eq $Software)' to log entry instead of of EXIT since it's inside a foreach loop and could exit before trying other values in App name array

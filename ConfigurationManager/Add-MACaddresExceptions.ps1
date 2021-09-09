@@ -1,9 +1,9 @@
-﻿$PrimarySite = "ah-sccm-01.paylocity.com"
+$PrimarySite = "ah-sccm-01.contoso.com"
 
 FUNCTION Get-DevicesByMAC{
 param($MACADDRESS)
 
-    $ServerInstance = "AH-SCCM-01.paylocity.com"
+    $ServerInstance = "AH-SCCM-01.contoso.com"
     $DB = "CM_PAY"
 
     # SQL query to find devices that have the inputted MAC associated to it

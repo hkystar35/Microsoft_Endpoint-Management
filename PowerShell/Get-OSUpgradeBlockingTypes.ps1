@@ -1,6 +1,6 @@
-﻿$ScriptName = 'Get-BlockingTypes'
+$ScriptName = 'Get-BlockingTypes'
 #$ScanresultFile = 'C:\$WINDOWS.~BT\Sources\Panther\scanresult.xml'
-$CompatXMLsPath = 'C:\Users\nicolas.wendlowsky\Downloads\ann\Panther'
+$CompatXMLsPath = 'C:\Users\hkystar35\Downloads\ann\Panther'
 $CompatXMLs = Get-ChildItem -Path $CompatXMLsPath\* -Filter "CompatData_*.xml" | select -ExpandProperty Fullname
 
 $ErrorActionPreference = 'Stop'

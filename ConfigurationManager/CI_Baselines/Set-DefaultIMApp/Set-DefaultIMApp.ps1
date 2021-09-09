@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Sets default IM provider
 	
@@ -23,8 +23,8 @@
 		===========================================================================
 		
 		Created on:   	7/22/2020 13:52:29
-		Created by:   	Nicolas.Wendlowsky@chobani.com
-		Organization: 	Chobani
+		Created by:   	hkystar35@contoso.com
+		Organization: 	contoso
 		Filename:	      Set-DefaultIMApp.ps1
 		===========================================================================
 #>

@@ -1,4 +1,4 @@
-﻿<#
+<#
     .SYNOPSIS
     Enables Remote Desktop
 	
@@ -9,8 +9,8 @@
     ===========================================================================
 
     Created on:   	4/8/2020 11:20:47
-    Created by:   	Nicolas.Wendlowsky@chobani.com
-    Organization: 	Chobani
+    Created by:   	hkystar35@contoso.com
+    Organization: 	contoso
     Filename:	      Enable-RemoteDesktopProtocol.ps1
     ===========================================================================
 #>

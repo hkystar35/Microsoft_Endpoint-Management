@@ -1,4 +1,4 @@
-﻿<#
+<#
     .SYNOPSIS
     A brief description of the !Template.ps1 file.
 	
@@ -12,8 +12,8 @@
     ===========================================================================
 
     Created on:   	4/14/2020 16:23:20
-    Created by:   	Nicolas.Wendlowsky@chobani.com
-    Organization: 	Chobani
+    Created by:   	hkystar35@contoso.com
+    Organization: 	contoso
     Filename:	      Move-OutlookClientRulesToO365
     ===========================================================================
 #>
@@ -116,7 +116,7 @@ PROCESS {
   TRY {
 		
     # Prompt User to Confirm identity
-    $UserPrincipalName = 'nicolas.wendlowsky@chobani.com'
+    $UserPrincipalName = 'hkystar35@contoso.com'
     
     # Exchange Online
     Connect-ExchangeOnline -UserPrincipalName $UserPrincipalName

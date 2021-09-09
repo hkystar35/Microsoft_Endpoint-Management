@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Sets up deadlines and deployments for In Place Upgrades to WIndows 10
 	
@@ -26,8 +26,8 @@
 		===========================================================================
 		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2018 v5.5.152
 		Created on:   	6/22/2018 8:30 AM
-		Created by:   	NWendlowsky
-		Organization: 	Paylocity
+		Created by:   	Nhkystar35
+		Organization: 	contoso
 		Filename:
 		===========================================================================
 #>
@@ -94,9 +94,9 @@ TRY {
 				}
 				IF ($usrname) {
 					IF ($usrname.count -gt 1) {
-						$smsid = ($usrname[0].SMSID).Replace('PAYLOCITY\', '')
+						$smsid = ($usrname[0].SMSID).Replace('contoso\', '')
 					} ELSE {
-						$smsid = $usrname.SMSID.Replace('PAYLOCITY\', '')
+						$smsid = $usrname.SMSID.Replace('contoso\', '')
 					}
 					IF ($smsid) {
 						Write-Output "Getting machine info for $($user)."
@@ -159,7 +159,7 @@ TRY {
 				$KeyValue = Invoke-Command -ComputerName $_.ComputerName -ArgumentList $DeadlineDate, $NewValue -ScriptBlock {
 					PARAM ($DeadlineDate,
 						$NewValue)
-					$InPlaceUpgradeKey = 'HKLM:\SOFTWARE\Paylocity\InPlaceUpgrade'
+					$InPlaceUpgradeKey = 'HKLM:\SOFTWARE\contoso\InPlaceUpgrade'
 					IF (!(Test-Path $InPlaceUpgradeKey)) {
 						New-Item -Path $InPlaceUpgradeKey -Force -ErrorAction SilentlyContinue
 						New-ItemProperty -Path $InPlaceUpgradeKey -Name 'DeadlineDate' -Value "$DeadlineDate" -Force -ErrorAction SilentlyContinue

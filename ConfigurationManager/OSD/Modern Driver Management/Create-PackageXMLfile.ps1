@@ -1,4 +1,4 @@
-﻿<#
+<#
 		.SYNOPSIS
 		Creates XML file of SCCM Package list for Modern Driver Management.
 	
@@ -26,15 +26,15 @@
 		===========================================================================
 
 		Created on:   	8/20/2019 9:40:33 AM
-		Created by:   	NWendlowsky@paylocity.com
-		Organization: 	Paylocity
+		Created by:   	hkystar35@contoso.com
+		Organization: 	contoso
 		Filename:	
 		===========================================================================
 #>
 [CmdletBinding()]
 PARAM
 (
-	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$SCCMComputer = 'ah-sccm-01.paylocity.com',
+	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$SCCMComputer = 'ah-sccm-01.contoso.com',
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$SCCMSiteCode = 'PAY',
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$PackageIDupdate = 'PAY006EE',
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string[]]$ModelsToModify
@@ -134,7 +134,7 @@ BEGIN {
 			HelpMessage="FQDN of SCCM Site Server.")]
 			[ValidateNotNullOrEmpty()]
 			[Alias("Server")]
-			$SCCMSiteServer = 'AH-SCCM-01.paylocity.com'
+			$SCCMSiteServer = 'AH-SCCM-01.contoso.com'
 		)
 		Begin{
 			Write-Log -message "********* Attempting to update package id $($PackageID) on $SCCMSiteServer"

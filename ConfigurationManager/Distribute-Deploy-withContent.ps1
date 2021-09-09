@@ -1,4 +1,4 @@
-﻿#region Set SCCM cmdlet location
+#region Set SCCM cmdlet location
 TRY {
 	$StartingLocation = Get-Location
 	Import-Module -Name $env:SMS_ADMIN_UI_PATH.Replace('\bin\i386', '\bin\ConfigurationManager.psd1')
@@ -98,10 +98,10 @@ $CollectionNames | ForEach-Object{
 }
 
 # Email Data   
-$CC = "EUCEngineers@paylocity.com"
-$To = "EUC@paylocity.com"
-$From = 'nwendlowsky@paylocity.com'
-$SMTP = 'post.paylocity.com'
+$CC = "EUCEngineers@contoso.com"
+$To = "EUC@contoso.com"
+$From = 'hkystar35@contoso.com'
+$SMTP = 'post.contoso.com'
 $Subject = "New App Testing - $($Choice.name)"
 
 IF ($DeploymentTarget -eq 1) {
@@ -121,11 +121,11 @@ IF ($DeploymentTarget -eq 1) {
 		$End = @"
 <p><span style="font-family: times new roman, times;">Thank you!</span></p>
 <p><span style="font-size: 10pt; font-family: times new roman, times;">____________________________</span></p>
-<p><span style="font-family: times new roman, times;"><span style="font-size: 10pt;"><strong>Nic Wendlowsky</strong> | End User Computing Engineer</span></span></p>
-<p><span style="font-family: times new roman, times; font-size: 10pt;">Paylocity | <a href="mailto:nwendlowsky@paylocity.com"><span style="color: #0563c1;">nwendlowsky@paylocity.com</span></a></span></p>
+<p><span style="font-family: times new roman, times;"><span style="font-size: 10pt;"><strong>Nic hkystar35</strong> | End User Computing Engineer</span></span></p>
+<p><span style="font-family: times new roman, times; font-size: 10pt;">contoso | <a href="mailto:hkystar35@contoso.com"><span style="color: #0563c1;">hkystar35@contoso.com</span></a></span></p>
 <p><span style="font-family: times new roman, times; font-size: 10pt;"><strong>C: 208.972.1757</strong> | EUC: 888-729-5624 (4526 &ndash;internal)</span></p>
-<p><span style="font-family: times new roman, times; font-size: 10pt;"><a href="mailto:askeuc@paylocity.com"><span style="color: #0563c1;">askeuc@paylocity.com</span></a></span></p>
-<p><span style="font-family: times new roman, times; font-size: 10pt;"><a href="https://employee.paylocity.com"><span style="color: #0563c1;">EUC Self-Help</span></a></span></p>
+<p><span style="font-family: times new roman, times; font-size: 10pt;"><a href="mailto:askeuc@contoso.com"><span style="color: #0563c1;">askeuc@contoso.com</span></a></span></p>
+<p><span style="font-family: times new roman, times; font-size: 10pt;"><a href="https://employee.contoso.com"><span style="color: #0563c1;">EUC Self-Help</span></a></span></p>
 "@
 		
 		$BodyEUC = $Begin
@@ -144,8 +144,8 @@ IF ($DeploymentTarget -eq 1) {
 		#region Create JIRA cards
 		Install-Module JIRAPS -Force
 		Import-Module jiraPS -Force
-		Set-JiraConfigServer -Server 'https://jira.paylocity.com'
-		$MyCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "nwendlowsky", ((E:\git\_Paylocity\paylocity.cyberark\Source\CredMan.ps1 -GetCred -Target $env:COMPUTERNAME -User 'paylocity\nwendlowsky').password | ConvertTo-SecureString -AsPlainText -Force)
+		Set-JiraConfigServer -Server 'https://jira.contoso.com'
+		$MyCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList "nhkystar35", ((E:\git\_contoso\contoso.cyberark\Source\CredMan.ps1 -GetCred -Target $env:COMPUTERNAME -User 'contoso\nhkystar35').password | ConvertTo-SecureString -AsPlainText -Force)
 		New-JiraSession -Credential $MyCredential
 		
 		$AllEUCAnalysts = Get-ADGroupMember "EUC Analysts" | ForEach-Object{
@@ -185,7 +185,7 @@ IF ($DeploymentTarget -eq 1) {
 				$PriorityLevel = 3
 			}
 		}
-		$reporter = 'nwendlowsky'
+		$reporter = 'nhkystar35'
 		$AllCards = @()
 		FOREACH ($User IN $AllEUCAnalysts) {
 			$IssueHashTable = @{

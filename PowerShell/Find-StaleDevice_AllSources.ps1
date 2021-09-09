@@ -1,6 +1,6 @@
-﻿$Bomgar_AuthURI      = 'https://chobani.bomgarcloud.com/oauth2/token'
-$Bomgar_BaseURI      = 'https://chobani.bomgarcloud.com/api/config/v1'
-$Bomgar_ReportingURI = 'https://chobani.bomgarcloud.com/api/reporting'
+$Bomgar_AuthURI      = 'https://contoso.bomgarcloud.com/oauth2/token'
+$Bomgar_BaseURI      = 'https://contoso.bomgarcloud.com/api/config/v1'
+$Bomgar_ReportingURI = 'https://contoso.bomgarcloud.com/api/reporting'
 
 
 function Find-AzureADStaleDevice {
@@ -15,7 +15,7 @@ function Find-AzureADStaleDevice {
 
       .DESCRIPTION
 
-      Get-MsolDevice –All is used by the function to get a list of stale devices, as it has built-in logic
+      Get-MsolDevice �All is used by the function to get a list of stale devices, as it has built-in logic
       to skip auto-pilot devices and other system managed devices. It uses the ApproximateLastLogonTimeStamp 
       attribute with the DeviceTrustType attribute value of either 'Azure AD Joined' or 'Domain Joined' or 
       'Workplace Joined' to find stale Azure AD devices. Device trust types are targeted with the -AaDJoined, 

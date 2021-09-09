@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Email users to uninstall PowerBroker
 	
@@ -9,8 +9,8 @@
 		===========================================================================
 		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2019 v5.6.159
 		Created on:   	2/22/2019 10:23 PM
-		Created by:   	NWendlowsky
-		Organization: 	Paylocity
+		Created by:   	Nhkystar35
+		Organization: 	contoso
 		Filename:
 		===========================================================================
 #>
@@ -86,9 +86,9 @@ BEGIN {
 		PARAM
 		(
 			[Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$Body,
-			[ValidateNotNullOrEmpty()]$To = 'EUCEngineers@paylocity.com',
-			[ValidateNotNullOrEmpty()]$From = "$($env:COMPUTERNAME)@paylocity.com",
-			[ValidateNotNullOrEmpty()]$CC = 'EUCEngineers@paylocity.com',
+			[ValidateNotNullOrEmpty()]$To = 'EUCEngineers@contoso.com',
+			[ValidateNotNullOrEmpty()]$From = "$($env:COMPUTERNAME)@contoso.com",
+			[ValidateNotNullOrEmpty()]$CC = 'EUCEngineers@contoso.com',
 			$ScriptName,
 			[ValidateNotNullOrEmpty()][string]$Subject,
 			[Parameter(Mandatory = $false)][switch]$html = $false,
@@ -141,7 +141,7 @@ BEGIN {
 				$EmailArgs += @{
 					To		   = $To
 					From	   = $From
-					SmtpServer = 'post.paylocity.com'
+					SmtpServer = 'post.contoso.com'
 					Priority   = $Priority
 				}
 				
@@ -211,7 +211,7 @@ order by 'MachineName'
 		
 		# Invoke SQL Query
 		Write-Log -Message "Querying SCCM SQL. . ."
-		$PBInstalls = Invoke-Sqlcmd -ServerInstance 'ah-sccm-01.paylocity.com' -Database 'CM_PAY' -Query $SQL
+		$PBInstalls = Invoke-Sqlcmd -ServerInstance 'ah-sccm-01.contoso.com' -Database 'CM_PAY' -Query $SQL
 		Write-Log -Message ". . . done."
 		
 		#region HTML Mail body
@@ -224,7 +224,7 @@ TD {border-width: 1px; padding: 3px; border-style: solid; border-color: black;}
 "@
 		$Salutation = @"
 <p>&nbsp;</p>
-<p>There's a script to remove PowerBroker in the <a title="AppStore" href="http://appstore.paylocity.com" target="_blank">AppStore</a> by searching for "PowerBroker" and choosing Install on "REMOVE PowerBroker - All Versions". (<em>Please use the script, testing has shown trying to remove from Add/Remove Programs to be unreliable</em>)</p>
+<p>There's a script to remove PowerBroker in the <a title="AppStore" href="http://appstore.contoso.com" target="_blank">AppStore</a> by searching for "PowerBroker" and choosing Install on "REMOVE PowerBroker - All Versions". (<em>Please use the script, testing has shown trying to remove from Add/Remove Programs to be unreliable</em>)</p>
 <p>If you run into issues with the AppStore, the same script is visible in your <a title="Software Center" href="softwarecenter:" target="_blank">Software Center</a> in the Applications tab.</p>
 <p>This <span style="text-decoration: underline;"><strong>WILL require a reboot</strong></span>, so do not initialize it until you are ready. A pop-up window will appear giving you a timer until the reboot is forced.</p>
 <p>If you are still on Windows 8.1, this is especially important as it will delay upgrading to Windows 10.</p>
@@ -232,10 +232,10 @@ TD {border-width: 1px; padding: 3px; border-style: solid; border-color: black;}
 <p>If you have questions or we have misidentified the machine in table as yours, please let us know!</p>
 <p>Thank you,</p>
 <p><strong>EUC Engineering</strong></p>
-<p>Paylocity | <a title="EUC Engineers" href="mailto:EUCEngineers@paylocity.com" target="_blank">EUCEngineers@paylocity.com</a></p>
+<p>contoso | <a title="EUC Engineers" href="mailto:EUCEngineers@contoso.com" target="_blank">EUCEngineers@contoso.com</a></p>
 <p>EUC: 888-729-5624 (4526 &ndash;internal)</p>
-<p><a href="mailto:askeuc@paylocity.com"><span style="color: #0563c1;">askeuc@paylocity.com</span></a></p>
-<p><a title="Zendesk" href="https://employee.paylocity.com" target="_blank"><span style="color: #0563c1;">EUC Self-Help</span></a></p>
+<p><a href="mailto:askeuc@contoso.com"><span style="color: #0563c1;">askeuc@contoso.com</span></a></p>
+<p><a title="Zendesk" href="https://employee.contoso.com" target="_blank"><span style="color: #0563c1;">EUC Self-Help</span></a></p>
 "@
 		#endregion HTML Mail body
 		
@@ -253,7 +253,7 @@ TD {border-width: 1px; padding: 3px; border-style: solid; border-color: black;}
 			AppName	     = "BeyondTrust PowerBroker Desktops Client for Windows"
 			AppPublisher = "BeyondTrust Software, Inc."
 			AppVersion   = "17.3.0.30"
-			Email	     = "nwendlowsky@paylocity.com"
+			Email	     = "hkystar35@contoso.com"
 			MachineName  = "EUCE-P1-TEST"
 		}
 		#>
@@ -270,7 +270,7 @@ TD {border-width: 1px; padding: 3px; border-style: solid; border-color: black;}
 		$Body = $Greeting
 		$Body += $Table
 		$Body += $Salutation
-		$EmailStatus = Send-Email -Subject 'Uninstall PowerBroker!' -Body $Body -html -Priority High -To $Email -From 'EUCEngineers@paylocity.com' -CC 'nwendlowsky@paylocity.com'
+		$EmailStatus = Send-Email -Subject 'Uninstall PowerBroker!' -Body $Body -html -Priority High -To $Email -From 'EUCEngineers@contoso.com' -CC 'hkystar35@contoso.com'
 		# Data for table email after individual emails sent
 		
 		$FinalTable += New-Object -TypeName PSObject -Property @{
@@ -295,9 +295,9 @@ TD {border-width: 1px; padding: 3px; border-style: solid; border-color: black;}
 <p><strong>PowerBroker removal email sent to users in this table:</strong></p>
 "@
 		$Body += $Table
-		Write-Log -Message "Sending email status table to eucengineers@paylocity.com for documentation."
-		#Send-Email -Subject 'Uninstall PowerBroker email sent' -Body $Body -html -Priority Normal -To 'EUC@paylocity.com' -CC 'EUCEngineers@paylocity.com'
-		Send-Email -Subject 'Uninstall PowerBroker email sent' -Body $Body -html -Priority Normal -To 'nwendlowsky@paylocity.com' -CC 'nwendlowsky@paylocity.com'
+		Write-Log -Message "Sending email status table to eucengineers@contoso.com for documentation."
+		#Send-Email -Subject 'Uninstall PowerBroker email sent' -Body $Body -html -Priority Normal -To 'EUC@contoso.com' -CC 'EUCEngineers@contoso.com'
+		Send-Email -Subject 'Uninstall PowerBroker email sent' -Body $Body -html -Priority Normal -To 'hkystar35@contoso.com' -CC 'hkystar35@contoso.com'
 		
 	} CATCH {
 		$Line = $_.InvocationInfo.ScriptLineNumber

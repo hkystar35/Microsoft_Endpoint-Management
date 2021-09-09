@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		This script performs the installation or uninstallation of an application(s).
 		# LICENSE #
@@ -80,14 +80,14 @@ TRY {
 	##* VARIABLE DECLARATION
 	##*===============================================
 	## Variables: Application
-	[string]$appVendor = 'Paylocity'
+	[string]$appVendor = 'contoso'
 	[string]$appName = 'Windows 10 In-Place Upgrade'
 	[string]$appVersion = '2.2'
 	[string]$appLang = 'EN'
 	[string]$appRevision = '30'
 	[string]$appScriptVersion = '2.2.1'
 	[string]$appScriptDate = '07/18/2018'
-	[string]$appScriptAuthor = 'Nicolas Wendlowsky'
+	[string]$appScriptAuthor = 'hkystar35'
 	##*===============================================
 	#Do not modify these variables:
 	$appProcesses = $appProcessesString -split (',')
@@ -157,7 +157,7 @@ TRY {
 		$DeployMode = 'Interactive'
 		
 		#region Determine if machine is inside domain or VPN
-		$ServerFQDN = 'AH-DC-01.paylocity.com'
+		$ServerFQDN = 'AH-DC-01.contoso.com'
 		$TestConnection = Test-Connection -ComputerName $ServerFQDN -BufferSize 16 -Count 1 -Quiet -ErrorAction SilentlyContinue
 		IF ($TestConnection) {
 			$NetworkType = 'Internal'
@@ -199,7 +199,7 @@ TRY {
 		#endregion
 		
 		#region Create AppData folder and copy email scripts for running via Task Scheduler
-		$UserProfileInPlaceUpgrade = "$LoggedOnUserProfilePath\appdata\Roaming\Paylocity\InPlaceUpgrade\CYOA"
+		$UserProfileInPlaceUpgrade = "$LoggedOnUserProfilePath\appdata\Roaming\contoso\InPlaceUpgrade\CYOA"
 		New-Folder -Path $UserProfileInPlaceUpgrade
 		Copy-File -Path "$scriptParentPath\*" -Destination "$UserProfileInPlaceUpgrade" -Recurse
 		#endregion
@@ -215,7 +215,7 @@ TRY {
 		
 	    #region Set Registry Key, Values, and get existing data
     # Registry Key Path
-    $InPlaceUpgradeKey = 'HKLM:\SOFTWARE\Paylocity\InPlaceUpgrade'
+    $InPlaceUpgradeKey = 'HKLM:\SOFTWARE\contoso\InPlaceUpgrade'
     IF (!(Test-Path -Path $InPlaceUpgradeKey)) {$CreateKey = Set-RegistryKey -Key "$InPlaceUpgradeKey"}
     $GetRegkeys = Get-RegistryKey -Key "$InPlaceUpgradeKey"
     IF (!($GetRegkeys.DeadlineDate)) {Set-RegistryKey -Key "$InPlaceUpgradeKey" -Name 'DeadlineDate'}
@@ -349,8 +349,8 @@ TRY {
 		## <Perform Post-Installation tasks here>
 		
 		#region Set Email Addresses
-			$Email_NotifyOnly = 'EUC@Paylocity.com'
-			$Email_Zendesk = 'AskEUC@Paylocity.com'
+			$Email_NotifyOnly = 'EUC@contoso.com'
+			$Email_Zendesk = 'AskEUC@contoso.com'
 			$Email_LoggedOnUser = $UserName + '@' + $Domain + '.com'
 		#endregion Set Email Addresses
 		
@@ -437,14 +437,14 @@ TRY {
 		# <Perform Uninstallation tasks here>
 		
 		#region Delete Registry Keys
-		$InPlaceUpgradeKey = 'HKLM:\SOFTWARE\Paylocity\InPlaceUpgrade'
+		$InPlaceUpgradeKey = 'HKLM:\SOFTWARE\contoso\InPlaceUpgrade'
 		Remove-RegistryKey -Key "$InPlaceUpgradeKey"
 		#endregion Delete Registry Keys
 		
 		#region Delete Script Folder
 		$UserProfiles = Get-UserProfiles | Select-Object -Property ProfilePath
 		$UserProfiles | ForEach-Object{
-			Remove-Folder -Path "$($_.ProfilePath)\appdata\Roaming\Paylocity\InPlaceUpgrade\CYOA"
+			Remove-Folder -Path "$($_.ProfilePath)\appdata\Roaming\contoso\InPlaceUpgrade\CYOA"
 		}
 		#endregion Delete Script Folder
 		

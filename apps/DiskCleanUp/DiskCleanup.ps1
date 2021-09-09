@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 	This script performs the installation or uninstallation of an application(s).
 .DESCRIPTION
@@ -180,8 +180,8 @@ Try {
 		
 		## <Perform Post-Installation tasks here>
 		#Creating new file for records
-		$CleanupFile = "$envComputerNameFQDN-Paylocity_DiskCleanup.txt"
-		$CleanupFilePath = "$envSystemRoot\temp\Paylocity"
+		$CleanupFile = "$envComputerNameFQDN-contoso_DiskCleanup.txt"
+		$CleanupFilePath = "$envSystemRoot\temp\contoso"
 		$CleanupFileName = "$CleanupFilePath\$CleanupFile"
 		$CleanupServerPath = "\\kirk\it\logs\DiskCleanUp"
 		New-Folder -path "$CleanupFilePath"
@@ -190,11 +190,11 @@ Try {
 		If (Test-Path $CleanupFileName){
 			Write-Log -Message "Detection file ($CleanupFileName) already exists." -Severity 1 -Source $deployAppScriptFriendlyName
 			Write-Log -Message "Appending Date to file." -Severity 1 -Source $deployAppScriptFriendlyName
-			Add-Content "$CleanupFileName" "`nPaylocity Disk Cleanup was run again on $currentDateTime"
+			Add-Content "$CleanupFileName" "`ncontoso Disk Cleanup was run again on $currentDateTime"
 			Copy-File -Path "$CleanupFileName" -Destination "$CleanupServerPath\$CleanupFile"
 			} Else {
 				Write-Log -Message "Creating Detection file ($CleanupFileName)." -Severity 1 -Source $deployAppScriptFriendlyName
-				New-Item "$CleanupFileName" -type file -force -value "Paylocity Disk Cleanup was first run on $currentDateTime"
+				New-Item "$CleanupFileName" -type file -force -value "contoso Disk Cleanup was first run on $currentDateTime"
 				Copy-File -Path "$CleanupFileName" -Destination "$CleanupServerPath\$CleanupFile"
 				}
 		

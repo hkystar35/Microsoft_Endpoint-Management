@@ -1,4 +1,4 @@
-﻿<# 
+<# 
 .SYNOPSIS
 	List all drivers that has been added to a specific Boot Image in ConfigMgr 2012 
 
@@ -26,7 +26,7 @@
 PARAM (
 	[parameter(Mandatory = $true, HelpMessage = "Site server where the SMS Provider is installed")][ValidateNotNullOrEmpty()][ValidateScript({
 			Test-Connection -ComputerName $_ -Count 1 -Quiet
-		})][string]$SiteServer = 'sccm-no-01.af.lan',
+		})][string]$SiteServer = 'sccm-no-01.contoso.com',
 	
 	[parameter(Mandatory = $true, HelpMessage = "Specify the Boot Image name as a string or an array of strings")][ValidateNotNullOrEmpty()][string[]]$BootImageName = @('OSDFE_X64','OSDFE_X64_A23'),
 	

@@ -1,10 +1,10 @@
-﻿<#	
+<#	
     .NOTES
     ===========================================================================
     Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2018 v5.5.150
     Created on:   	4/12/2018 12:29 PM
-    Created by:   	NWendlowsky
-    Organization: 	Paylocity
+    Created by:   	Nhkystar35
+    Organization: 	contoso
     Filename:     	
     ===========================================================================
     .DESCRIPTION
@@ -155,7 +155,7 @@ Last IP address: $IPAddress
     [void]$sb.AppendLine('VERSION:2.0')
     [void]$sb.AppendLine('METHOD:PUBLISH')
     [void]$sb.AppendLine('X-PRIMARY-CALENDAR:TRUE')
-    [void]$sb.AppendLine('PRODID:-//Paylocity//EUC Engineering ICS Builder//EN')
+    [void]$sb.AppendLine('PRODID:-//contoso//EUC Engineering ICS Builder//EN')
     [void]$sb.AppendLine('BEGIN:VEVENT')
     [void]$sb.AppendLine("UID:" + [guid]::NewGuid())
     [void]$sb.AppendLine("CREATED:" + [datetime]::Now.ToUniversalTime().ToString($longDateFormat))

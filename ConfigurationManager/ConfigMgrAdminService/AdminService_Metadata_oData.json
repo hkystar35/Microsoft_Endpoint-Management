@@ -1,5 +1,5 @@
 {
-    "@odata.context": "https://sccm-no-01.af.lan/AdminService/v1.0/$metadata",
+    "@odata.context": "https://sccm-no-01.contoso.com/AdminService/v1.0/$metadata",
     "value": [{
             "name": "Application",
             "kind": "EntitySet",

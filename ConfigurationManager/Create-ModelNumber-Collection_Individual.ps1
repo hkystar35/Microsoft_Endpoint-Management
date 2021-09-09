@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Automatically creates SCCM Collections when new device models are added to the database.
 	
@@ -9,8 +9,8 @@
 		===========================================================================
 		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2018 v5.5.154
 		Created on:   	8/20/2018 4:07 PM
-		Created by:   	NWendlowsky
-		Organization: 	Paylocity
+		Created by:   	Nhkystar35
+		Organization: 	contoso
 		Filename:
 		===========================================================================
 #>
@@ -45,7 +45,7 @@ GROUP BY Manufacturer00,Version00,LEFT(SMBIOSBIOSVersion0,4),LEFT(model00,4)
 ORDER BY 'ModelName'
 "@
 	
-	$ServerInstance = "AH-SCCM-01.paylocity.com"
+	$ServerInstance = "AH-SCCM-01.contoso.com"
 	$DB = "CM_PAY"
 	
 	$SQLResults = Invoke-Sqlcmd -Query $SQLQuery -ServerInstance $ServerInstance -Database $DB

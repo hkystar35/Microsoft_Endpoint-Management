@@ -1,4 +1,4 @@
-ï»¿$SoftwareName = 'LastLogon_2018-11-02'
+$SoftwareName = 'LastLogon_2018-11-02'
 $CollectionName = 'All Windows Workstations'
 
 $strCurrentTimeZone = (Get-WmiObject win32_timezone).StandardName
@@ -22,8 +22,8 @@ $SummTime = [System.TimeZoneInfo]::ConvertTimeFromUtc($LastLogonDeployment.Summa
 
 
 
-$ToEmailAddresses = 'mkraemer@Paylocity.com'
-$FromEmailAddresses = 'nwendlowsky@Paylocity.com'
+$ToEmailAddresses = 'mkraemer@contoso.com'
+$FromEmailAddresses = 'hkystar35@contoso.com'
 $CCEmailAddresses = $FromEmailAddresses
 
 $EmailSubject = "Outlook Disable Autocomplete - Numbers {0}" -f (Get-Date -Format yyyy-MM-dd)
@@ -40,20 +40,20 @@ Compliant = Last logon event happened after we enforced the Autocomplete setting
 
 Noncompliant = Last logon event happened prior to enforcing the Autocomplete setting on Friday
 
-Unknown = Machine hasnâ€™t reported back a status yet. Mix of offline and machines not on VPN or with slower connections
+Unknown = Machine hasn’t reported back a status yet. Mix of offline and machines not on VPN or with slower connections
 
 
 
-Nic Wendlowsky | End User Computing Engineer
+Nic hkystar35 | End User Computing Engineer
 
-Paylocity | nwendlowsky@paylocity.com
+contoso | hkystar35@contoso.com
 
-C: 208.972.1757 | O: 224.857.5353 | EUC: 888-729-5624 (4526 â€“internal)
+C: 208.972.1757 | O: 224.857.5353 | EUC: 888-729-5624 (4526 –internal)
 
-EUC Self-Help | askeuc@paylocity.com
+EUC Self-Help | askeuc@contoso.com
 
 "@ -f $SummTime,$Total,$Compliant,$Noncompliant,$Unknown,$tz.StandardName,$CompliantPercent,$NoncompliantPercent,$UnknownPercent
 
-#Send-MailMessage -To $ToEmailAddresses -From $FromEmailAddresses -Cc $CCEmailAddresses -Subject $EmailSubject -Body $EmailBody -SmtpServer post.paylocity.com
+#Send-MailMessage -To $ToEmailAddresses -From $FromEmailAddresses -Cc $CCEmailAddresses -Subject $EmailSubject -Body $EmailBody -SmtpServer post.contoso.com
 $EmailBody
 #Clear-Variable EmailBody,LastLogonDeployment

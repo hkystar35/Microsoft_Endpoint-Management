@@ -1,4 +1,4 @@
-﻿#region Install Nuget and Trust PSGallery
+#region Install Nuget and Trust PSGallery
 TRY{
     Install-PackageProvider -Name 'Nuget' -Force -Confirm:$false -ErrorAction Stop
     Set-PackageSource -Name 'PSGallery' -Trusted -Force -Confirm:$false
@@ -37,7 +37,7 @@ $SourceISOFile = 'C:\Tools\ISO Files\SW_DVD9_Win_Pro_10_1909.4_64BIT_English_Pro
 
 Initialize-HVTools -Path 'C:\Tools\WindowsAutopilot' -Reset
 Add-ImageToConfig -IsoPath $SourceISOFile -ImageName "1909"
-Add-TenantToConfig -TenantName 'Chobani' -ImageName "1909" -AdminUpn 'nicolas.wendlowsky@chobani.com'
+Add-TenantToConfig -TenantName 'contoso' -ImageName "1909" -AdminUpn 'hkystar35@contoso.com'
 Add-NetworkToConfig -VSwitchName 'Default Switch'
 Get-HVToolsConfig
-New-ClientVM -TenantName 'Chobani' -NumberOfVMs 1 -CPUsPerVM 1 -VMMemory 2GB
+New-ClientVM -TenantName 'contoso' -NumberOfVMs 1 -CPUsPerVM 1 -VMMemory 2GB

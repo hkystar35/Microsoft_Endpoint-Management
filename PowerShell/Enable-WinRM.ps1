@@ -1,4 +1,4 @@
-﻿<#
+<#
     .SYNOPSIS
     Enables WinRM service
 	
@@ -9,8 +9,8 @@
     ===========================================================================
 
     Created on:   	2020/12/15
-    Created by:   	Nicolas.Wendlowsky@chobani.com
-    Organization: 	Chobani
+    Created by:   	hkystar35@contoso.com
+    Organization: 	contoso
     Filename:	      Enable-WinRM.ps1
     ===========================================================================
 #>

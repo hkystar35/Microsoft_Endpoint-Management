@@ -30,8 +30,8 @@ ProofPoint/Proofpoint Encryption Plug-in for Microsoft Outlook/1.3.9.5/Proofpoin
 #*/**/Trend/**/CUT.ini
 Trend Micro/Office Scan/Uninstall/CUT_v4.8.1_ForOSCE_NonApexOne/CUT.ini
 #*/**/TimeClockConverter/**/*.xml
-Paylocity/TimeClockConverter/Files/Files/LumenWorks.Framework.IO.xml
-Paylocity/TimeClockConverter/Files/Files/Conversion_Config.xml
+contoso/TimeClockConverter/Files/Files/LumenWorks.Framework.IO.xml
+contoso/TimeClockConverter/Files/Files/Conversion_Config.xml
 #*/Appx/**/*
 Microsoft/AppX/Reader/Microsoft.Reader_8wekyb3d8bbwe_4c48eb84-ce2f-6c5b-89f4-8319fe492b02.xml
 *.rpm

@@ -1,5 +1,5 @@
 # SCCM Documentation
-Documentation of Paylocity's SCCM environment. It is by no means comprehensive.
+Documentation of contoso's SCCM environment. It is by no means comprehensive.
 
 Basic info:
 * Single stand-alone Primary Site:

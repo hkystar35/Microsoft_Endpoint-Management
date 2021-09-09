@@ -15,8 +15,8 @@
 		===========================================================================
 
 		Created on:   	09/18/2019 11:23:55 AM
-		Created by:   	NWendlowsky@paylocity.com
-		Organization: 	Paylocity
+		Created by:   	hkystar35@contoso.com
+		Organization: 	contoso
 		Filename:	      Install-DriversPNPUtil.p1
 		===========================================================================
 #>

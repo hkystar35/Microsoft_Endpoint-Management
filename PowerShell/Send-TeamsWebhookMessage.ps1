@@ -65,8 +65,8 @@
 		===========================================================================
 		
 		Created on:   	2021-08-19 17:09:33
-		Created by:   	Nicolas.Wendlowsky@chobani.com
-		Organization: 	Chobani
+		Created by:   	hkystar35@contoso.com
+		Organization: 	contoso
 		Filename:	    Send-TeamsWebhookMessage.ps1
 		===========================================================================
 #>

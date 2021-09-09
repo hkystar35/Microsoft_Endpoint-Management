@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		A brief description of the  file.
 	
@@ -24,8 +24,8 @@
 		===========================================================================
 		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2019 v5.6.156
 		Created on:   	2/28/2019 11:08 AM
-		Created by:   	NWendlowsky
-		Organization: 	Paylocity
+		Created by:   	Nhkystar35
+		Organization: 	contoso
 		Filename:
 		===========================================================================
 #>
@@ -46,7 +46,7 @@ BEGIN {
 	[string]$ScriptName = $ScriptFileInfo.BaseName
 	[string]$scriptRoot = Split-Path $ScriptFileInfo
 	$SiteCode = 'PAY'
-	$SCCMserver = 'AH-SCCM-01.paylocity.com'
+	$SCCMserver = 'AH-SCCM-01.contoso.com'
 	
 	#region FUNCTION Write-Log
 	FUNCTION Write-Log {
@@ -111,8 +111,8 @@ BEGIN {
 		PARAM
 		(
 			[Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()]$Body,
-			[ValidateNotNullOrEmpty()]$To = 'EUCEngineers@paylocity.com',
-			[ValidateNotNullOrEmpty()]$From = "$($env:COMPUTERNAME)@paylocity.com",
+			[ValidateNotNullOrEmpty()]$To = 'EUCEngineers@contoso.com',
+			[ValidateNotNullOrEmpty()]$From = "$($env:COMPUTERNAME)@contoso.com",
 			[ValidateNotNullOrEmpty()]$CC,
 			$ScriptName = $ScriptName,
 			[ValidateNotNullOrEmpty()][string]$Subject,
@@ -166,7 +166,7 @@ BEGIN {
 				$EmailArgs += @{
 					To		   = $To
 					From	   = $From
-					SmtpServer = 'post.paylocity.com'
+					SmtpServer = 'post.contoso.com'
 					Priority   = $Priority
 				}
 				
@@ -558,11 +558,11 @@ PROCESS {
 		$Salutation = @"
 <p>&nbsp;</p>
 <p><span style="font-size: 10pt; font-family: times new roman, times;">____________________________</span></p>
-<p><span style="font-size: 10pt; font-family: times new roman, times;">&nbsp;<strong>Nic Wendlowsky</strong> | End User Computing Engineer</span></p>
-<p><span style="font-size: 10pt; font-family: times new roman, times;">Paylocity | <a href="mailto:nwendlowsky@paylocity.com"><span style="color: #0563c1;">nwendlowsky@paylocity.com</span></a></span></p>
+<p><span style="font-size: 10pt; font-family: times new roman, times;">&nbsp;<strong>Nic hkystar35</strong> | End User Computing Engineer</span></p>
+<p><span style="font-size: 10pt; font-family: times new roman, times;">contoso | <a href="mailto:hkystar35@contoso.com"><span style="color: #0563c1;">hkystar35@contoso.com</span></a></span></p>
 <p><span style="font-size: 10pt; font-family: times new roman, times;"><strong>C: 208.972.1757</strong> | EUC: 888-729-5624 (4526 &ndash;internal)</span></p>
-<p><span style="font-size: 10pt; font-family: times new roman, times;"><a href="mailto:askeuc@paylocity.com"><span style="color: #0563c1;">askeuc@paylocity.com</span></a></span></p>
-<p><span style="font-size: 10pt; font-family: times new roman, times;"><a href="https://employee.paylocity.com"><span style="color: #0563c1;">EUC Self-Help</span></a></span></p>
+<p><span style="font-size: 10pt; font-family: times new roman, times;"><a href="mailto:askeuc@contoso.com"><span style="color: #0563c1;">askeuc@contoso.com</span></a></span></p>
+<p><span style="font-size: 10pt; font-family: times new roman, times;"><a href="https://employee.contoso.com"><span style="color: #0563c1;">EUC Self-Help</span></a></span></p>
 "@
 		$EmailBody = $Body_Tables
 		$EmailBody += $Salutation

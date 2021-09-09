@@ -1,4 +1,4 @@
-ï»¿<#
+<#
 	.SYNOPSIS
 		Generates a unique machine name for Active Directory
 	
@@ -30,8 +30,8 @@
 		===========================================================================
 		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2018 v5.5.155
 		Created on:   	05/21/2019 11:06 AM
-		Created by:   	NWendlowsky
-		Organization: 	Paylocity
+		Created by:   	Nhkystar35
+		Organization: 	contoso
 		Filename:		Create-NewADComputerName.ps1
 		===========================================================================
 #>
@@ -41,7 +41,7 @@
 param
 (
 	[Parameter(ParameterSetName = 'Email',
-			   Mandatory = $true)][ValidatePattern('^[a-zA-Z0-9.!Â£#$%&''^_`{}~-]+@contoso.com$')][ValidateNotNullOrEmpty()][string]$Email,
+			   Mandatory = $true)][ValidatePattern('^[a-zA-Z0-9.!£#$%&''^_`{}~-]+@contoso.com$')][ValidateNotNullOrEmpty()][string]$Email,
 	[Parameter(ParameterSetName = 'Inventory',
 			   Mandatory = $false)][switch]$Inventory,
 	[Parameter(ParameterSetName = 'Inventory',
@@ -141,8 +141,8 @@ PROCESS {
 		Regex pattern for valid characters in name.
 	
 	.EXAMPLE
-		PS C:\> Create-NewADComputerName -Email 'nwendlowsky@paylocity.com' -Pattern '[^a-zA-Z0-9]' -MaxNameLength 15
-		Returns output string NICWENDLOWSKY
+		PS C:\> Create-NewADComputerName -Email 'hkystar35@contoso.com' -Pattern '[^a-zA-Z0-9]' -MaxNameLength 15
+		Returns output string NIChkystar35
 	
 	.OUTPUTS
 		string
@@ -154,7 +154,7 @@ PROCESS {
 		[CmdletBinding()]
 		PARAM
 		(
-			[Parameter(Mandatory = $true)][ValidatePattern('^[a-zA-Z0-9.!Â£#$%&''^_`{}~-]+@paylocity.com$')][ValidateNotNullOrEmpty()][string]$Email,
+			[Parameter(Mandatory = $true)][ValidatePattern('^[a-zA-Z0-9.!£#$%&''^_`{}~-]+@contoso.com$')][ValidateNotNullOrEmpty()][string]$Email,
 			[Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][int]$MaxNameLength,
 			[Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][regex]$Pattern
 		)

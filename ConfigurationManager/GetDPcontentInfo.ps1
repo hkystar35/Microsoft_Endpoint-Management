@@ -1,4 +1,4 @@
-ï»¿## Variables
+## Variables
  
 # Enter ComputerName
 $ComputerName = $env:computername
@@ -9,9 +9,9 @@ $TodaysDate = Get-Date -Format "yyyy-MM-dd HH:MM:ss"
  
 # Enter email details
 $SendEmail = "yes"
-$smtpServer = "post.paylocity.com"
-$smtpFrom = "$ComputerName@paylocity.com"
-[string[]]$smtpTo = "nwendlowsky@paylocity.com"#,jjenks@paylocity.com,chofman@paylocity.com"
+$smtpServer = "post.contoso.com"
+$smtpFrom = "$ComputerName@contoso.com"
+[string[]]$smtpTo = "hkystar35@contoso.com"#,jjenks@contoso.com,chofman@contoso.com"
 $messageSubject = "Drive Space Report for $ComputerName"
  
 ## Get and email the data
@@ -70,13 +70,13 @@ $smtp.Send($message)
 <# SQL Stuff
  
 # Database info
-$dataSource = â€œMySQLServer\INST_SCCMâ€
-$database = â€œSCCM_Server_Dataâ€
+$dataSource = “MySQLServer\INST_SCCM”
+$database = “SCCM_Server_Data”
  
 # Open a connection
 cls
 Write-host "Opening a connection to '$database' on '$dataSource'"
-$connectionString = â€œServer=$dataSource;Database=$database;Integrated Security=SSPI;â€
+$connectionString = “Server=$dataSource;Database=$database;Integrated Security=SSPI;”
 $connection = New-Object System.Data.SqlClient.SqlConnection
 $connection.ConnectionString = $connectionString
 $connection.Open()

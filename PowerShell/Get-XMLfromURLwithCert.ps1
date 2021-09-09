@@ -1,4 +1,4 @@
-﻿FUNCTION Update-ConfigStaticXML {
+FUNCTION Update-ConfigStaticXML {
   <#
       .SYNOPSIS
       Updates or creates local config.xml file using URL source to overwrite
@@ -54,9 +54,9 @@ FUNCTION Get-MachineCertificate {
   } | Sort-Object -Property notafter | Select-Object -Last 1
 }
 
-Update-ConfigStaticXML -ConfigStaticXMLURL "https://sccmdp-no-01.af.lan/ConfigMgrWebService/bin/ClientHealth_config.xml" -Destination "C:\ProgramData\ConfigMgrClientHealth\Config-test.xml" -Certificate $(Get-MachineCertificate)
+Update-ConfigStaticXML -ConfigStaticXMLURL "https://sccmdp-no-01.contoso.com/ConfigMgrWebService/bin/ClientHealth_config.xml" -Destination "C:\ProgramData\ConfigMgrClientHealth\Config-test.xml" -Certificate $(Get-MachineCertificate)
 <#
-Invoke-WebRequest -Uri "https://sccmdp-no-01.af.lan/ConfigMgrWebService/bin/ClientHealth_config.xml" -UseBasicParsing
+Invoke-WebRequest -Uri "https://sccmdp-no-01.contoso.com/ConfigMgrWebService/bin/ClientHealth_config.xml" -UseBasicParsing
 #-Certificate $(Get-MachineCertificate) -UseBasicParsing
 #-ErrorAction SilentlyContinue -OutFile $destination.FullName -PassThru
 #>

@@ -3,7 +3,7 @@
     <Networking>Disable</Networking>
     <MappedFolders>
         <MappedFolder>
-            <HostFolder>C:\Users\nicolas.wendlowsky\git\ChobaniIT</HostFolder>
+            <HostFolder>C:\Users\hkystar35\git\contosoIT</HostFolder>
             <SandboxFolder>C:\GIT</SandboxFolder>
             <ReadOnly>true</ReadOnly>
         </MappedFolder>

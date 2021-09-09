@@ -1,4 +1,4 @@
-﻿#Styles
+#Styles
 <#
 [Enum]::GetNames([Microsoft.Office.Interop.Word.WdBuiltinStyle]) | ForEach {
     [pscustomobject]@{Style=$_}
@@ -29,7 +29,7 @@ Function Invoke-SQL ( $DataSource, $Database , $sqlCommand) {
 # Uses current PowerShell user creds
 Function Invoke-SQL {
         param (
-                [string] $dataSource = "ah-sccm-01.paylocity.com",
+                [string] $dataSource = "ah-sccm-01.contoso.com",
                 [string] $database = "CM_PAY",
                 [string] $sqlCommand = $(throw "Please specify a query.")
               )
@@ -51,7 +51,7 @@ Function Invoke-SQL {
                     }
 #>
 
-$Deployments = (Invoke-SQL "ah-sccm-01.paylocity.com" "CM_PAY" "
+$Deployments = (Invoke-SQL "ah-sccm-01.contoso.com" "CM_PAY" "
 Select
 Case
 When FeatureType = 1 Then 'Application'
@@ -63,7 +63,7 @@ Order by SoftwareName
 ") | Out-Gridview -OutputMode Single
 
 
-$SoftQuery = (Invoke-SQL "ah-sccm-01.paylocity.com" "CM_PAY" "
+$SoftQuery = (Invoke-SQL "ah-sccm-01.contoso.com" "CM_PAY" "
 Create Table #FNAPP
 (
 Assign int,
@@ -238,7 +238,7 @@ $Selection.TypeParagraph()
 }
 
 
-$Report = 'C:\Users\_nwendlowsky\Desktop\Application Deployment Documentation.doc'
+$Report = 'C:\Users\_nhkystar35\Desktop\Application Deployment Documentation.doc'
 $Document.SaveAs([ref]$Report,[ref]$SaveFormat::wdFormatDocument)
 $word.Quit()
 #Remove-variable * -ErrorAction SilentlyContinue

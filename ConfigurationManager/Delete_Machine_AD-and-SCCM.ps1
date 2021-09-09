@@ -1,5 +1,5 @@
-﻿$Machine = Read-Host "Machine name to remove"
-$SCCMServer = 'AH-SCCM-01.paylocity.com'
+$Machine = Read-Host "Machine name to remove"
+$SCCMServer = 'AH-SCCM-01.contoso.com'
 $SiteCode = 'PAY'
 
 $PingTest = Test-Connection -ComputerName $Machine -Count 1 -ErrorAction SilentlyContinue

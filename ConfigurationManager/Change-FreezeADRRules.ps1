@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Enable or disable Windows Updates SUGs
 	
@@ -9,8 +9,8 @@
 		===========================================================================
 		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2018 v5.5.155
 		Created on:   	11/27/2018 11:04 AM
-		Created by:   	NWendlowsky
-		Organization: 	Paylocity
+		Created by:   	Nhkystar35
+		Organization: 	contoso
 		Filename: Change-FreezeADRRules.ps1
 		===========================================================================
 #>
@@ -102,13 +102,13 @@ ELSEIF (!(Test-Path $Path)) {
 		PARAM
 		(
 			[Parameter(Mandatory = $true)][ValidateNotNullOrEmpty()][string]$Message,
-			[ValidateNotNullOrEmpty()]$To = 'EUCEngineers@paylocity.com',
-			[ValidateNotNullOrEmpty()]$From = 'EUCEngineers@paylocity.com',
+			[ValidateNotNullOrEmpty()]$To = 'EUCEngineers@contoso.com',
+			[ValidateNotNullOrEmpty()]$From = 'EUCEngineers@contoso.com',
 			[ValidateNotNullOrEmpty()][string]$Script = $ScriptName
 		)
 		
 		#TODO: Place script here
-		Send-MailMessage -To $To -From $From -Subject "$Script Script Error on $($env:COMPUTERNAME)" -Body $Message -SmtpServer 'post.paylocity.com'
+		Send-MailMessage -To $To -From $From -Subject "$Script Script Error on $($env:COMPUTERNAME)" -Body $Message -SmtpServer 'post.contoso.com'
 		Write-Log -Message "Email sent to $To from $From with message body of `"$Message`""
 	}
 	
@@ -144,15 +144,15 @@ PROCESS {
         $FREEZE = Is-DateBetweenTimes $StartFreeze $EndFreeze
 		IF (!$CollectionNames) {
 			Write-Log -Message "No collections found for search string `"$($CollectionSearchString)`"." -Level Warn
-			Send-ErrorEmail -Message "Could not find Windows Update collections to disable for FREEZE Check.`nVerify Collection search string `"$($CollectionSearchString)`" is still accurate." -To 'nwendlowsky@paylocity.com'
+			Send-ErrorEmail -Message "Could not find Windows Update collections to disable for FREEZE Check.`nVerify Collection search string `"$($CollectionSearchString)`" is still accurate." -To 'hkystar35@contoso.com'
             THROW 1
 		} ELSEIF (!$ADR) {
 			Write-Log -Message "No ADRs found for search string `"$($CollectionSearchString)`"." -Level Warn
-			Send-ErrorEmail -Message "Could not find ADRs for FREEZE Check.`nVerify ADRs exist." -To 'nwendlowsky@paylocity.com'
+			Send-ErrorEmail -Message "Could not find ADRs for FREEZE Check.`nVerify ADRs exist." -To 'hkystar35@contoso.com'
             THROW 1
 		} ELSEIF (!$Deployments) {
 			Write-Log -Message "No ADR Deployment Rules found for search string `"$($CollectionSearchString)`"." -Level Warn
-			Send-ErrorEmail -Message "Could not find ADR Deployment Rules for FREEZE Check.`nVerify ADR Deployment Rules exist." -To 'nwendlowsky@paylocity.com'
+			Send-ErrorEmail -Message "Could not find ADR Deployment Rules for FREEZE Check.`nVerify ADR Deployment Rules exist." -To 'hkystar35@contoso.com'
             THROW 1
 		}
 		IF ($FREEZE) {

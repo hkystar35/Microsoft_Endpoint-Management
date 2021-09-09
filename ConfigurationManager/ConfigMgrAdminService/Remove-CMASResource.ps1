@@ -34,7 +34,7 @@ FUNCTION Remove-CMASResource {
     [CmdletBinding()][OutputType([System.Array])]
     PARAM
     (
-        [Parameter(HelpMessage = 'FQDN of SMS Provider service role')][ValidateNotNullOrEmpty()][Alias('SMS')][string]$AdminServiceProviderFQDN = 'sccm-no-01.af.lan',
+        [Parameter(HelpMessage = 'FQDN of SMS Provider service role')][ValidateNotNullOrEmpty()][Alias('SMS')][string]$AdminServiceProviderFQDN = 'sccm-no-01.contoso.com',
             
         [ValidateNotNullOrEmpty()][string[]]$DeviceNames,
             

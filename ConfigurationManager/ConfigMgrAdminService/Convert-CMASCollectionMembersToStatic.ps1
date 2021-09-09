@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Converts Collection to all Direct membership
 	
@@ -24,8 +24,8 @@
 		===========================================================================
 		
 		Created on:   	4/16/2021 09:56:10
-		Created by:   	Nicolas.Wendlowsky@chobani.com
-		Organization: 	Chobani
+		Created by:   	hkystar35@contoso.com
+		Organization: 	contoso
 		Filename:	      Convert-CMASCollectionToStatic
 		===========================================================================
 #>

@@ -1,4 +1,4 @@
-﻿#FUNCTION New-EMailGun {
+#FUNCTION New-EMailGun {
 	[CmdletBinding()]
 	PARAM
 	(
@@ -11,7 +11,7 @@
 	
 	# Variables
 	$TLD = '.com'
-	$Domain = 'Paylocity'
+	$Domain = 'contoso'
 	$EmailDomain = 'euc.' + $Domain + $TLD
 	$From = "Windows10Upgrade@euc." + $Domain + $TLD
 	$CC = $UserName + '@' + $Domain + $TLD

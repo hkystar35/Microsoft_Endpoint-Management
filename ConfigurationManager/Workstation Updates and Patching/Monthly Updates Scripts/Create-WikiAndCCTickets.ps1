@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Creates Wiki page and CAB tickets for Monthly Updates
 	
@@ -31,12 +31,12 @@ PARAM
 (
 	[switch]$EmergencySchedule = $false,
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$ZDSubmitEmail = $null,
-    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$CyberArkUserName = 'nwendlowsky',
+    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$CyberArkUserName = 'nhkystar35',
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$CyberArkName_ZD = 'Token-API-Zendesk-EUCE',
     [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$CyberArkName_Slack = 'Token-API-Slack-EUCE',
 	[Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$CyberArkSafeName = 'Team-EUCENG-Passwords',
-    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][System.IO.DirectoryInfo]$PaylocityCyberArkPath = "C:\Modules\paylocity.cyberark",
-    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$Confluence_UserName = 'nwendlowsky',
+    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][System.IO.DirectoryInfo]$contosoCyberArkPath = "C:\Modules\contoso.cyberark",
+    [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][string]$Confluence_UserName = 'nhkystar35',
     [Parameter(Mandatory = $false)][ValidateNotNullOrEmpty()][int]$Confluence_ParentPageID = '46478898',
     [switch]$CreateTickets = $false
 )
@@ -49,10 +49,10 @@ BEGIN {
 	[string]$Global:scriptRoot = Split-Path $ScriptFileInfo
 	
 	# Set Paths for CyberArk module and credman
-	$PaylocityCyberArkPath_Module = Join-Path $PaylocityCyberArkPath 'Source\Paylocity.CyberArk.psm1'
-	$PaylocityCyberArkPath_CredMan = Join-Path $PaylocityCyberArkPath 'Source\CredMan.ps1'
-    Test-Path $PaylocityCyberArkPath_Module -PathType Leaf -ErrorAction Stop
-    Test-Path $PaylocityCyberArkPath_CredMan -PathType Leaf -ErrorAction Stop
+	$contosoCyberArkPath_Module = Join-Path $contosoCyberArkPath 'Source\contoso.CyberArk.psm1'
+	$contosoCyberArkPath_CredMan = Join-Path $contosoCyberArkPath 'Source\CredMan.ps1'
+    Test-Path $contosoCyberArkPath_Module -PathType Leaf -ErrorAction Stop
+    Test-Path $contosoCyberArkPath_CredMan -PathType Leaf -ErrorAction Stop
 
 	#region FUNCTION Write-Log
 	FUNCTION Write-Log {
@@ -132,16 +132,16 @@ BEGIN {
 	#endregion Set SCCM cmdlet location	
 
 	#region Import CyberArk Module
-	$GetModule = Get-Module -Name Paylocity.CyberArk -ErrorAction SilentlyContinue
+	$GetModule = Get-Module -Name contoso.CyberArk -ErrorAction SilentlyContinue
 	IF (!$GetModule) {
-		Write-Log -Message "Paylocity.CyberArk module not imported."
-		#$PaylocityCyberArk = Find-Module -Name Paylocity.CyberArk -ErrorAction Stop
-		#$PaylocityCyberArk | Import-Module -Force -ErrorAction Stop
-		#Install-Module -Name Paylocity.cyberark -Repository
-		Import-Module $PaylocityCyberArkPath_Module -Force -Cmdlet:$false -ErrorAction Stop
+		Write-Log -Message "contoso.CyberArk module not imported."
+		#$contosoCyberArk = Find-Module -Name contoso.CyberArk -ErrorAction Stop
+		#$contosoCyberArk | Import-Module -Force -ErrorAction Stop
+		#Install-Module -Name contoso.cyberark -Repository
+		Import-Module $contosoCyberArkPath_Module -Force -Cmdlet:$false -ErrorAction Stop
 		TRY {
-			$GetModule = Get-Module -Name Paylocity.CyberArk -ErrorAction Stop
-			Write-Log -Message "Paylocity.CyberArk module found: $($GetModule.Name)."
+			$GetModule = Get-Module -Name contoso.CyberArk -ErrorAction Stop
+			Write-Log -Message "contoso.CyberArk module found: $($GetModule.Name)."
 		} CATCH {
 			Write-Log -Message 'Could not import CyberArk module' -Level Warn
 			Set-Location -Path $StartingLocation
@@ -194,23 +194,23 @@ PROCESS {
     #region Get creds and tokens before proceeding
     TRY {
 		Write-Log -Message "Getting credentials for $CyberArkUserName"
-		$RegularCreds = & $PaylocityCyberArkPath_CredMan -GetCred -Target $env:COMPUTERNAME -User "paylocity\$($CyberArkUserName)"
-        $RegularCreds_Confluence = & $PaylocityCyberArkPath_CredMan -GetCred -Target $env:COMPUTERNAME -User "$($CyberArkUserName)"
+		$RegularCreds = & $contosoCyberArkPath_CredMan -GetCred -Target $env:COMPUTERNAME -User "contoso\$($CyberArkUserName)"
+        $RegularCreds_Confluence = & $contosoCyberArkPath_CredMan -GetCred -Target $env:COMPUTERNAME -User "$($CyberArkUserName)"
 		IF(!$RegularCreds -or !$RegularCreds_Confluence){
             THROW "Credentials not found for $CyberArkUserName"
         }
         $MyCredential = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $CyberArkUserName, ($RegularCreds.Password | ConvertTo-SecureString -AsPlainText -Force)
         $MyCredential_Confluence = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $CyberArkUserName, ($RegularCreds.Password | ConvertTo-SecureString -AsPlainText -Force)
 		Write-Log -Message "Connecting to CyberArk for API tokens"
-        Paylocity.CyberArk\Connect-CyberArk -Credential $MyCredential -Url 'https://cyberark.paylocity.com'
-		$Slack = Paylocity.CyberArk\Get-Account -SafeName $CyberArkSafeName -Name $CyberArkName_Slack
+        contoso.CyberArk\Connect-CyberArk -Credential $MyCredential -Url 'https://cyberark.contoso.com'
+		$Slack = contoso.CyberArk\Get-Account -SafeName $CyberArkSafeName -Name $CyberArkName_Slack
         $SlackToken = $Slack.Password
-		$Zendesk = Paylocity.CyberArk\Get-Account -SafeName $CyberArkSafeName -Name $CyberArkName_ZD
+		$Zendesk = contoso.CyberArk\Get-Account -SafeName $CyberArkSafeName -Name $CyberArkName_ZD
         $ZDToken = $Zendesk.Password
         $ZDURL = $Zendesk.Properties.accounts.Properties | ?{$_.key -like "*address*"} | select -ExpandProperty value
-        [string]$ZDSubmitEmail = $Confluence_UserName + '@paylocity.com'
+        [string]$ZDSubmitEmail = $Confluence_UserName + '@contoso.com'
         [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
-        $ConfluenceConnect = Set-ConfluenceInfo -BaseURI 'https://wiki.paylocity.com' -Credential $MyCredential_Confluence
+        $ConfluenceConnect = Set-ConfluenceInfo -BaseURI 'https://wiki.contoso.com' -Credential $MyCredential_Confluence
         
 		IF($SlackToken -and $SlackToken.Length -gt 10){
 			Write-Log -Message "API token reteived successfully"
@@ -229,7 +229,7 @@ PROCESS {
 
 	# Assigning creds Don't use UPN
 
-	$RegularCreds = & $PaylocityCyberArkPath_CredMan -GetCred -Target $env:COMPUTERNAME -User "paylocity\$($Confluence_UserName)"
+	$RegularCreds = & $contosoCyberArkPath_CredMan -GetCred -Target $env:COMPUTERNAME -User "contoso\$($Confluence_UserName)"
     IF(!$RegularCreds){
         THROW "Credentials not found for $Confluence_UserName"
     }
@@ -247,7 +247,7 @@ Monthly Updates from Patch My PC for 3rd Party applications have been synchroniz
 New updates have been added to this month's Software Update Group
 
 
-https://wiki.paylocity.com/display/EUCENG/Out-of-Band+Patch+Schedule
+https://wiki.contoso.com/display/EUCENG/Out-of-Band+Patch+Schedule
 
 **Note:**
 This change is deploying an update, application, script, or baseline against the designated workstations. It is feasible, and entirely normal, for it to take 2 weeks to get reporting back that the changes have succeeded or failed for each machine. The Change Advisory Board has asked that this ticket remain Open until reporting is sufficient. Thank you!
@@ -266,7 +266,7 @@ Monthly Updates from Patch My PC for 3rd Party applications have been synchroniz
 New updates have been added to this month's Software Update Group
 
 
-https://wiki.paylocity.com/display/EUCENG/Windows+Updates
+https://wiki.contoso.com/display/EUCENG/Windows+Updates
 
 **Note:**
 This change is deploying an update, application, script, or baseline against the designated workstations. It is feasible, and entirely normal, for it to take 2 weeks to get reporting back that the changes have succeeded or failed for each machine. The Change Advisory Board has asked that this ticket remain Open until reporting is sufficient. Thank you!
@@ -395,7 +395,7 @@ Microsoft Patches (Count: $($WinUpdates.count), Unique: $UniqueWinArticles)
 		
 		$Username = $ZDSubmitEmail + '/token'
 		$Token = $ZDToken
-		$URL = 'https://paylocity.zendesk.com/api/v2'
+		$URL = 'https://contoso.zendesk.com/api/v2'
 		
 		
 		#
@@ -434,7 +434,7 @@ Microsoft Patches (Count: $($WinUpdates.count), Unique: $UniqueWinArticles)
 			#
 			$Year = $PatchTuesday.Year.ToString()
 			SWITCH ($EmergencySchedule) {
-				$true { <# Expedited schedule https://wiki.paylocity.com/display/EUCENG/Out-of-Band+Patch+Schedule #>
+				$true { <# Expedited schedule https://wiki.contoso.com/display/EUCENG/Out-of-Band+Patch+Schedule #>
 					SWITCH ($i) {
 						2 {
 							$deployDate = Get-Date -Date $Patchtuesday.AddDays(3) -UFormat %Y-%m-%d
@@ -462,7 +462,7 @@ Microsoft Patches (Count: $($WinUpdates.count), Unique: $UniqueWinArticles)
 						}
 					}
 				}
-				$false { <# Regular schedule https://wiki.paylocity.com/display/EUCENG/Windows+Updates#WindowsUpdates-ScheduleTables #>
+				$false { <# Regular schedule https://wiki.contoso.com/display/EUCENG/Windows+Updates#WindowsUpdates-ScheduleTables #>
 					SWITCH ($i) {
 						2 {
 							$deployDate = Get-Date -Date $Patchtuesday.AddDays(6) -UFormat %Y-%m-%d
@@ -504,11 +504,11 @@ Microsoft Patches (Count: $($WinUpdates.count), Unique: $UniqueWinArticles)
 					
 					fields  = [PSCustomObject]@{
 						114094622752 = '1'
-						31247267 = 'https://wiki.paylocity.com/display/EUCENG/Windows+Updates#WindowsUpdates-RollbackPlan'
+						31247267 = 'https://wiki.contoso.com/display/EUCENG/Windows+Updates#WindowsUpdates-RollbackPlan'
 						33025407 = "$($conflvar.url)"
 						30330248 = 'cc_risk_medium'
 						31213927 = 'N/A'
-						42880248 = 'https://wiki.paylocity.com/display/EUCENG/Windows+Updates#WindowsUpdates-ValidationandMonitoring'
+						42880248 = 'https://wiki.contoso.com/display/EUCENG/Windows+Updates#WindowsUpdates-ValidationandMonitoring'
 						33025387 = 'N/A'
 						32282328 = 'N/A'
 						45903487 = 'cc_risk_calc_field1_5points'

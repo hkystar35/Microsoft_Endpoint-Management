@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
   Changes Power Settings in Windows
 .DESCRIPTION
@@ -14,7 +14,7 @@
   none
 .NOTES
   Version:        1.0
-  Author:         Nicolas Wendlowsky
+  Author:         hkystar35
   Creation Date:  09/20/2017
   Purpose/Change: Initial script development
   

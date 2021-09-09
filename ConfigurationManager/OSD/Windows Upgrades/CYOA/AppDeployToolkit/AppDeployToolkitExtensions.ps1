@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
 	This script is a template that allows you to extend the toolkit with your own custom functions.
 .DESCRIPTION
@@ -1037,7 +1037,7 @@ FUNCTION Invoke-OSDInstall {
 			PackageID	  = $OSD.PackageID
 			ProgramID	  = $OSD.ProgramID
 		}
-		Invoke-CimMethod -CimClass $CIMClass -MethodName "ExecuteProgram" –Arguments $Args
+		Invoke-CimMethod -CimClass $CIMClass -MethodName "ExecuteProgram" �Arguments $Args
 		Write-Output $Error[0]
 	} CATCH {
 		Write-Output $Error[0]
@@ -1191,7 +1191,7 @@ Last IP address: $IPAddress
 		[void]$sb.AppendLine('VERSION:2.0')
 		[void]$sb.AppendLine('METHOD:PUBLISH')
 		[void]$sb.AppendLine('X-PRIMARY-CALENDAR:TRUE')
-		[void]$sb.AppendLine('PRODID:-//Paylocity//EUC Engineering ICS Builder//EN')
+		[void]$sb.AppendLine('PRODID:-//contoso//EUC Engineering ICS Builder//EN')
 		[void]$sb.AppendLine('BEGIN:VEVENT')
 		[void]$sb.AppendLine("UID:" + [guid]::NewGuid())
 		[void]$sb.AppendLine("CREATED:" + [datetime]::Now.ToUniversalTime().ToString($longDateFormat))
@@ -1263,7 +1263,7 @@ FUNCTION New-EMailGun {
 	
 	# Variables
 	$TLD = '.com'
-	$Domain = 'Paylocity'
+	$Domain = 'contoso'
 	$EmailDomain = 'euc.' + $Domain + $TLD
 	$From = "Windows10Upgrade@euc." + $Domain + $TLD
 	$CC = $UserName + '@' + $Domain + $TLD

@@ -1,4 +1,4 @@
-﻿<#
+<#
 	.SYNOPSIS
 		Sets up deadlines and deployments for In Place Upgrades to WIndows 10
 	
@@ -24,8 +24,8 @@
 		===========================================================================
 		Created with: 	SAPIEN Technologies, Inc., PowerShell Studio 2018 v5.5.152
 		Created on:   	6/22/2018 8:30 AM
-		Created by:   	NWendlowsky
-		Organization: 	Paylocity
+		Created by:   	Nhkystar35
+		Organization: 	contoso
 		Filename:
 		===========================================================================
 #>
@@ -102,7 +102,7 @@ FUNCTION Get-WarrantyEndDate {
 	
 	
 	$apiKey = "4a523e4883ba4f90ab61af00f056c091"
-	$response = Invoke-RestMethod -Uri "https://paylocity.oomnitza.com/api/v3/assets?filter=device_name eq '$($ComputerName)'" -Method GET -Headers @{
+	$response = Invoke-RestMethod -Uri "https://contoso.oomnitza.com/api/v3/assets?filter=device_name eq '$($ComputerName)'" -Method GET -Headers @{
 		"Authorization2" = $apiKey
 	}
     IF($response.count -gt '1'){
@@ -150,9 +150,9 @@ TRY {
 				}
 				IF ($usrname) {
 					IF ($usrname.count -gt 1) {
-						$smsid = ($usrname[0].SMSID).Replace('PAYLOCITY\', '')
+						$smsid = ($usrname[0].SMSID).Replace('contoso\', '')
 					} ELSE {
-						$smsid = $usrname.SMSID.Replace('PAYLOCITY\', '')
+						$smsid = $usrname.SMSID.Replace('contoso\', '')
 					}
 					IF ($smsid) {
 						Write-Output "Getting machine info for $($user)."

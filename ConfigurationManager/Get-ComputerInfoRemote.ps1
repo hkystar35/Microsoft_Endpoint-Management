@@ -1,4 +1,4 @@
-﻿$Computers = 'nicwendlowsky' #,'clintsmith2','davidjohnson'
+$Computers = 'nichkystar35' #,'clintsmith2','davidjohnson'
 $CompInfoOutput = @()
 $DriverInfo = @()
 

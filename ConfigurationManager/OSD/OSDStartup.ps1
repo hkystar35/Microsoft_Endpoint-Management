@@ -1,4 +1,4 @@
-﻿#region FUNCTIONS
+#region FUNCTIONS
 
 FUNCTION Connect-ConfigMgrWebService {
   <#
@@ -678,12 +678,12 @@ FUNCTION Set-TSvariableValue {
 #region Variables
 
 #Global
-$global:CMPrimaryServer = 'sccm-no-01.af.lan'
+$global:CMPrimaryServer = 'sccm-no-01.contoso.com'
 $global:AdminServiceURI = "https://$($global:CMPrimaryServer)/AdminService/v1.0/"
 $global:CMSiteCode = 'NOR'
-$global:WebserviceURI = "http://sccmdp-no-01.af.lan/ConfigMgrWebService/ConfigMgr.asmx"
+$global:WebserviceURI = "http://sccmdp-no-01.contoso.com/ConfigMgrWebService/ConfigMgr.asmx"
 #$global:Secret = '135de552-fd0b-4234-92d5-332ce44e3fc8'
-$global:DNSsuffix = 'af.lan'
+$global:DNSsuffix = 'contoso.com'
 $global:WebService = Connect-ConfigMgrWebService -URI $global:WebserviceURI
 $global:Device_Info = Get-DeviceInfo
 #$global:TSEnv = Set-TSEnvironment

@@ -12,8 +12,8 @@
     ===========================================================================
 
     Created on:   	2021-07-12 16:19:10
-    Created by:   	Nicolas.Wendlowsky@chobani.com
-    Organization: 	Chobani
+    Created by:   	hkystar35@contoso.com
+    Organization: 	contoso
     Filename:	      
     ===========================================================================
 #>
@@ -26,13 +26,13 @@ PARAM
 	
     [Parameter(Mandatory = $false)]
     [ValidateNotNullOrEmpty()]
-    [string]$CM_ProviderMachineName = 'SCCM-NO-01.af.lan',
+    [string]$CM_ProviderMachineName = 'SCCM-NO-01.contoso.com',
 
     [Parameter(Mandatory = $true, HelpMessage = 'String array of OUs to search in DistinguishedName format: "DC=domain,DC=TLD"')]
     [ValidateNotNullOrEmpty()]
     [string[]]$OUs,
 
-    [Parameter(HelpMessage = 'Enter a single email address.')][ValidatePattern('^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@chobani.com')]
+    [Parameter(HelpMessage = 'Enter a single email address.')][ValidatePattern('^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@contoso.com')]
     [ValidateNotNullOrEmpty()]
     [Alias('E')]
     [String[]]$EmailAddress,

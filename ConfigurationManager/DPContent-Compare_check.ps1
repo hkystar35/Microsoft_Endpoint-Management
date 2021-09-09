@@ -1,8 +1,8 @@
-﻿$DPs = 'FL-SCCM-DP-01.PAYLOCITY.COM',
-	'ID-SCCM-DP-03.PAYLOCITY.COM',
-	'IL-SCCM-DP-01.PAYLOCITY.COM',
-	'INT-IBCM-MP-01.PAYLOCITY.COM',
-	'INT-SCCM-DP-01.PAYLOCITY.COM'
+$DPs = 'FL-SCCM-DP-01.contoso.com',
+	'ID-SCCM-DP-03.contoso.com',
+	'IL-SCCM-DP-01.contoso.com',
+	'INT-IBCM-MP-01.contoso.com',
+	'INT-SCCM-DP-01.contoso.com'
 
 foreach($DP in $DPs){
     Invoke-Command -ComputerName $DP -ScriptBlock {$WMIPkgList = Get-WmiObject -Namespace Root\SCCMDP -Class SMS_PackagesInContLib | Select -ExpandProperty PackageID | Sort-Object

@@ -97,7 +97,7 @@
 		
 		Created on:   	2020-06-09 11:12:47
 		Updated on:   	2021-06-23 10:46:06
-		Created by:   	Nicolas Wendlowsky
+		Created by:   	hkystar35
 
     Filename:		    Update-OSDFE_hwmodels.ps1
 		===========================================================================

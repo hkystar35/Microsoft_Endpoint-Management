@@ -1,4 +1,4 @@
-ï»¿#region Source: Startup.pss
+#region Source: Startup.pss
 #----------------------------------------------
 #region Import Assemblies
 #----------------------------------------------
@@ -55,9 +55,9 @@ function Main {
 	$script:Credentials = Get-Credential
 	
 	#region defaults
-	$FromEmail = "$($env:COMPUTERNAME)@paylocity.com"
-	$SMTPServer = "post.paylocity.com"
-	$PrimarySiteServer = "AH-SCCM-01.paylocity.com"
+	$FromEmail = "$($env:COMPUTERNAME)@contoso.com"
+	$SMTPServer = "post.contoso.com"
+	$PrimarySiteServer = "AH-SCCM-01.contoso.com"
 	$script:DefaultTimezone = "(UTC-06:00) Central Time (US & Canada)" #must be in the "Display Name" format so it matches an item on the form
 	$script:DPTableType = "DPGroup" #"DP" or "DPGroup" - Sets the default for the form, radio button allows to change
 	$script:Action = "Distribute Content" #"Distribute Content", "Redistribute Content", or "Update Content" - Sets the default for the form, combobox allows to change
@@ -2788,10 +2788,10 @@ function Show-MainForm_psf
 	$textbox_ScheduleInfo.Size = '364, 112'
 	$textbox_ScheduleInfo.TabIndex = 13
 	$textbox_ScheduleInfo.TabStop = $False
-	$textbox_ScheduleInfo.Text = 'â€¢Specify the Date, Time, and Timezone for which you want the content distribution to start.
-â€¢Specify the "Recipient" email address(es) to receive notifications. Multiple address should be split by a semi-colon (;)
-â€¢Specify the "Action" you''d like to perform on the content that will be selected.
-â€¢Specify if you''d like to target Distribution Points themselves, or Distribution Point Groups.'
+	$textbox_ScheduleInfo.Text = '•Specify the Date, Time, and Timezone for which you want the content distribution to start.
+•Specify the "Recipient" email address(es) to receive notifications. Multiple address should be split by a semi-colon (;)
+•Specify the "Action" you''d like to perform on the content that will be selected.
+•Specify if you''d like to target Distribution Points themselves, or Distribution Point Groups.'
 	#
 	# tabpage_DPSelection
 	#
