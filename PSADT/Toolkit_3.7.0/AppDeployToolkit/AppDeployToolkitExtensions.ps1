@@ -37,9 +37,8 @@ Param (
 
 # <Your custom functions go here>
 
-#region FUNCTION Remove-DesktopShortcut
 FUNCTION Remove-DesktopShortcut {
-    <#
+	<#
 			.SYNOPSIS
 			Removes Desktop Shortcuts - requires PSADT toolkit functions
 			.DESCRIPTION
@@ -53,87 +52,48 @@ FUNCTION Remove-DesktopShortcut {
 			.NOTES
 			Additional information about the function.
 	#>
-    [CmdletBinding()]
-    PARAM
-    (
-        [Parameter(Mandatory = $true,
-            Position = 1)][SupportsWildcards()][ValidateNotNullOrEmpty()][Alias('N')][string]$Name
-    )
-    BEGIN {
-        ## Get the name of this function and write header
-        [string]${CmdletName} = $PSCmdlet.MyInvocation.MyCommand.Name
-        Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -CmdletBoundParameters $PSBoundParameters -Header
-    }
-    PROCESS {
-        TRY {
-            $Files = Get-DesktopShortcut -Name $Name
-            $Files | ForEach-Object {
-                Remove-File -Path "$_"
-            }
-        }
-        CATCH {
-            Write-Log -Message "Unable to remove $Name or syntax error." -severity 2 -Source ${CmdletName}
-        }
-    }
-    END {
-        Refresh-Desktop
-        Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
-    }
+	[CmdletBinding()]
+	PARAM
+	(
+		[Parameter(Mandatory = $true,
+			Position = 1)][SupportsWildcards()][ValidateNotNullOrEmpty()][Alias('N')][string]$Name,
+		[Parameter(Position = 2)][Alias('WC')][switch]$UseWildCard
+	)
+	BEGIN {
+		## Get the name of this function and write header
+		[string]${CmdletName} = $PSCmdlet.MyInvocation.MyCommand.Name
+		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -CmdletBoundParameters $PSBoundParameters -Header
+	}
+	PROCESS {
+		SWITCH ($UseWildCard) {
+			false {
+				$FileName = $Name + '.lnk'
+			}
+			true {
+				$FileName = $Name + '*' + '.lnk'
+			}
+		}
+		TRY {
+			$Paths = "$envCommonDesktop", "$envUserDesktop"
+			$Paths | ForEach-Object {
+				IF (!(Test-Path -Path $_\$FileName)) {
+					Write-Log -Message "LNK doesn't exist: $_\$FileName" -severity 1 -Source ${CmdletName}
+				}
+				ELSEIF (Test-Path -Path $_\$FileName) {
+					Remove-File -Path $_\$FileName
+				}
+			}
+			Refresh-Desktop
+		}
+		CATCH {
+			Write-Log -Message "Unable to remove $FileName or syntax error." -severity 2 -Source ${CmdletName}
+		}
+	}
+	END {
+		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
+	}
 }
-#endregion FUNCTION Remove-DesktopShortcut
 
-#region FUNCTION Get-DesktopShortcut
-FUNCTION Get-DesktopShortcut {
-    <#
-			.SYNOPSIS
-			Gets Desktop Shortcuts - requires PSADT toolkit functions
-			.DESCRIPTION
-			Specify file name, without file extension, to get Desktop Shortcuts. Support wildcards
-			.PARAMETER Name
-			File name without file extension
-			.EXAMPLE
-            PS C:\> Get-DesktopShortcut -Name 'Value1'
-			.NOTES
-			Additional information about the function.
-	#>
-    [CmdletBinding()]
-    PARAM
-    (
-        [Parameter(Mandatory = $true,
-            Position = 1)][SupportsWildcards()][ValidateNotNullOrEmpty()][Alias('N')][string]$Name
-    )
-    BEGIN {
-        ## Get the name of this function and write header
-        [string]${CmdletName} = $PSCmdlet.MyInvocation.MyCommand.Name
-        Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -CmdletBoundParameters $PSBoundParameters -Header
-    }
-    PROCESS {
-        TRY {
-            #$FileName = $Name + '.lnk'
-            Write-Log -Message "Searching for shortcuts matching: $($Name).lnk"
-            $Paths = "$envCommonDesktop", "$envUserDesktop"
-            $Files = @()
-            $Paths | ForEach-Object {
-                IF ($File = Get-ChildItem -Path $_ -Filter "$($Name).lnk" -ErrorAction SilentlyContinue) {
-                    $Files += $File.FullName
-                }
-            }
-            
-            # Output value if true
-            $Files
-        }
-        CATCH {
-            Write-Log -Message "Bad file name: $FileName or syntax error." -severity 2 -Source ${CmdletName}
-        }
-    }
-    END {
-        Write-Log -Message "Matches found: $($Files.count)"
-        Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
-    }
-}
-#endregion FUNCTION Get-DesktopShortcut
-
-#region FUNCTION Get-OfficeInfo
 FUNCTION Get-OfficeInfo {
 	BEGIN {
 		## Get the name of this function and write header
@@ -171,7 +131,8 @@ FUNCTION Get-OfficeInfo {
 								$OfficeName = ($AppProps | ForEach-Object -Process {
 										((($_.DisplayName).replace('Microsoft', '')).Replace('Office', '')).replace(' ', '')
 									}) + '_' + $OfficeVersion + '_' + $OfficeBitness
-							} ELSE {
+							}
+							ELSE {
 								$OfficeBitness = Get-ItemProperty -Path "HKLM:\Software\Microsoft\Office\$OfficeVersion\Outlook" -Name Bitness | Select-Object -ExpandProperty bitness
 								$OfficeInstaller = 'MSI'
 								$OfficeName = 'Office' + $OfficeYear + '_' + $OfficeVersion + '_' + $OfficeBitness
@@ -179,32 +140,28 @@ FUNCTION Get-OfficeInfo {
 							
 							# Add data to Output object
 							$Output += New-Object -TypeName 'PSObject' -Property @{
-								Name	   = $OfficeName
-								Year	   = $OfficeYear
-								Version    = $OfficeVersion
-								Bitness    = $OfficeBitness
-								Installer  = $OfficeInstaller
+								Name      = $OfficeName
+								Year      = $OfficeYear
+								Version   = $OfficeVersion
+								Bitness   = $OfficeBitness
+								Installer = $OfficeInstaller
 							}
 							Write-Log -Message "Found Office application [$($AppProps.DisplayName) $($OfficeBitness)]." -severity 1 -Source ${CmdletName}
 						}
 					}
 				}
 			}
-			
-			# Output data
-			$output
-			
-		} CATCH {
-			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
+			Write-Output -InputObject $output
+		}
+		CATCH {
+			Write-Output -InputObject 'error'
 		}
 	}
 	END {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Get-OfficeInfo
 
-#region FUNCTION Get-MSIinfo
 FUNCTION Get-MSIinfo {
 	PARAM
 	(
@@ -235,7 +192,8 @@ FUNCTION Get-MSIinfo {
 			
 			# Return the value
 			RETURN $Value
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 	}
@@ -246,10 +204,7 @@ FUNCTION Get-MSIinfo {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Get-MSIinfo
-#Get-MSIinfo -Path 'E:\git\apps\Biscom\SFT Client 5.1.1011\Files\BiscomSFT-Outlook-2019-addin-x86.msi'
 
-#region FUNCTION Get-ShortName
 FUNCTION Get-ShortName {
 	<#
 			.SYNOPSIS
@@ -285,10 +240,12 @@ FUNCTION Get-ShortName {
 			
 			IF ($_.psiscontainer) {
 				$fso.getfolder($_.fullname).ShortName
-			} ELSE {
+			}
+			ELSE {
 				$fso.getfile($_.fullname).ShortName
 			}
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 		
@@ -297,9 +254,7 @@ FUNCTION Get-ShortName {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Get-ShortName
 
-#region FUNCTION Get-SmartScreenSettingsStatus
 FUNCTION Get-SmartScreenSettingsStatus {
 	<#
 			.SYNOPSIS
@@ -328,17 +283,20 @@ FUNCTION Get-SmartScreenSettingsStatus {
 			TRY {
 				#$val = Get-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name SmartScreenEnabled -ErrorAction Stop
 				$Val = Get-RegistryKey -Key HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name SmartScreenEnabled
-			} CATCH {
+			}
+			CATCH {
 				Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 			}
 			IF ($val) {
 				Write-Log -Message "Smart screen settings is set to: $($val.SmartScreenEnabled)" -Severity 1 -Source ${CmdletName}
 				RETURN $val.SmartScreenEnabled
-			} ELSE {
+			}
+			ELSE {
 				Write-Log -Message 'Smart screen settings is set to: Off (by default)' -Severity 1 -Source ${CmdletName}
 				RETURN $false
 			}
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 		
@@ -347,9 +305,7 @@ FUNCTION Get-SmartScreenSettingsStatus {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Get-SmartScreenSettingsStatus
 
-#region FUNCTION Set-SmartScreenSettingsStatus
 FUNCTION Set-SmartScreenSettingsStatus {
 	[CmdletBinding()]
 	PARAM (
@@ -366,7 +322,8 @@ FUNCTION Set-SmartScreenSettingsStatus {
 			IF (-not ($IsAdmin)) {
 				Write-Log -Message "Must run powerShell as Administrator to perform these actions" -Severity 3 -Source ${CmdletName}
 			}
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 	}
@@ -375,7 +332,8 @@ FUNCTION Set-SmartScreenSettingsStatus {
 			#$Set = Set-ItemProperty -Path HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name SmartScreenEnabled -ErrorAction Stop -Value $State -Force -PassThru
 			$Set = Set-RegistryKey -Key HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer -Name SmartScreenEnabled -Value $State
 			RETURN $Set
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 	}
@@ -383,9 +341,7 @@ FUNCTION Set-SmartScreenSettingsStatus {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Set-SmartScreenSettingsStatus
 
-#region FUNCTION Create-FirewallRule
 FUNCTION Create-FirewallRule {
 	PARAM
 	(
@@ -411,17 +367,18 @@ FUNCTION Create-FirewallRule {
 			#region Remove Existing Firewall Rules
 			TRY {
 				IF ($RemoveExisiting) {
-					$GetExistingRules = Get-NetFirewallRule | Where-Object{
+					$GetExistingRules = Get-NetFirewallRule | Where-Object {
 						$_.DisplayName -like "*$($SearchExisting)*"
 					}
 					IF ($GetExistingRules) {
-						$GetExistingRules | ForEach-Object{
+						$GetExistingRules | ForEach-Object {
 							Write-Log -Message "Found Existing Firewall Rule, Deleting: $($_.DisplayName) ($($_.Name))" -Severity 1 -Source ${CmdletName}
 							$_ | Remove-NetFirewallRule
 						}
 					}
 				}
-			} CATCH {
+			}
+			CATCH {
 				Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 			}
 			#endregion Remove Existing Firewall Rules
@@ -433,19 +390,23 @@ FUNCTION Create-FirewallRule {
 						$NewFirewallRule = New-NetFirewallRule -DisplayName "$FirewallDisplayName" -Description "$FirewallRuleDescription" -Direction Inbound -Program "$FilePath" -Protocol $Protocol -Action Allow -EdgeTraversalPolicy DeferToUser -Enabled True
 						IF ($NewFirewallRule) {
 							Write-Log -Message "Created new $Protocol Firewall Rule: $FirewallDisplayName" -Severity 1 -Source ${CmdletName}
-						} ELSE {
+						}
+						ELSE {
 							Write-Log -Message "Failed to create $FirewallDisplayName rule for protocol $Protocol." -Severity 2 -Source ${CmdletName}
 						}
 					}
-				} ELSE {
+				}
+				ELSE {
 					Write-Log -Message "Could not create new firewall rule, target file for rule not found." -Severity 2 -Source ${CmdletName}
 				}
-			} CATCH {
+			}
+			CATCH {
 				Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 			}
 			
 			#endregion Create New Firewall Rules
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 	}
@@ -453,9 +414,7 @@ FUNCTION Create-FirewallRule {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Create-FirewallRule
 
-#region FUNCTION Upload-FTP
 FUNCTION Upload-FTP {
 	<#
 			.SYNOPSIS
@@ -510,7 +469,8 @@ FUNCTION Upload-FTP {
 			$ftpURI = New-Object -TypeName System.Uri -ArgumentList $ftpURI
 			$webclient.UploadFile($ftpURI, $($LocalFile.FullName))
 			Write-Log -Message "Upload Succeeded" -Severity 1 -Source ${CmdletName}
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 	}
@@ -518,43 +478,7 @@ FUNCTION Upload-FTP {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Upload-FTP
 
-#region FUNCTION Verb-Noun
-#FUNCTION Verb-Noun {
-<#
-		.SYNOPSIS
-		.DESCRIPTION
-		.PARAMETER
-		.EXAMPLE
-		.NOTES
-		.LINK
-		http://psappdeploytoolkit.com
-#>
-<#	[CmdletBinding()]
-		PARAM (
-		)
-	
-		BEGIN {
-		## Get the name of this function and write header
-		[string]${CmdletName} = $PSCmdlet.MyInvocation.MyCommand.Name
-		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -CmdletBoundParameters $PSBoundParameters -Header
-		}
-		PROCESS {
-		TRY {
-			
-		} CATCH {
-			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
-		}
-		}
-		END {
-		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
-		}
-		}
-#>
-#endregion FUNCTION Verb-Noun
-
-#region FUNCTION Create-7zip
 FUNCTION Create-7zip {
 	<#
 			.SYNOPSIS
@@ -599,7 +523,8 @@ FUNCTION Create-7zip {
 			$Result = Execute-Process -Path $PathTo7ZipEXE -Parameters $arguments -PassThru
 			Write-Log -Message "Zip file attempt finished" -severity 1 -Source ${CmdletName}
 			Write-Output $Result
-		} CATCH {
+		}
+		CATCH {
 			Write-Log -Message "<error message>. `n$(Resolve-Error)" -Severity 3 -Source ${CmdletName}
 		}
 	}
@@ -607,7 +532,6 @@ FUNCTION Create-7zip {
 		Write-FunctionHeaderOrFooter -CmdletName ${CmdletName} -Footer
 	}
 }
-#endregion FUNCTION Create-7zip
 
 ##*===============================================
 ##* END FUNCTION LISTINGS
@@ -615,15 +539,4 @@ FUNCTION Create-7zip {
 
 ##*===============================================
 ##* SCRIPT BODY
-##*===============================================
-
-If ($scriptParentPath) {
-	Write-Log -Message "Script [$($MyInvocation.MyCommand.Definition)] dot-source invoked by [$(((Get-Variable -Name MyInvocation).Value).ScriptName)]" -Source $appDeployToolkitExtName
-}
-Else {
-	Write-Log -Message "Script [$($MyInvocation.MyCommand.Definition)] invoked directly" -Source $appDeployToolkitExtName
-}
-
-##*===============================================
-##* END SCRIPT BODY
 ##*===============================================
