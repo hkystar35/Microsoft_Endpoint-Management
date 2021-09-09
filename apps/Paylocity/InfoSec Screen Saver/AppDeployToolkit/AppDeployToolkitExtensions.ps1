@@ -205,7 +205,6 @@ FUNCTION Get-MSIinfo {
 	}
 }
 #endregion FUNCTION Get-MSIinfo
-#Get-MSIinfo -Path 'E:\git\apps\Biscom\SFT Client 5.1.1011\Files\BiscomSFT-Outlook-2019-addin-x86.msi'
 
 #region FUNCTION Get-ShortName
 FUNCTION Get-ShortName {
