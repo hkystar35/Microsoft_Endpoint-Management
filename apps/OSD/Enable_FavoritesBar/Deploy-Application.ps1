@@ -56,7 +56,7 @@ Try {
 	##* VARIABLE DECLARATION
 	##*===============================================
 	## Variables: Application
-	[string]$appVendor = 'Paylocity'
+	[string]$appVendor = 'contoso'
 	[string]$appName = 'IE Settings'
 	[string]$appVersion = ''
 	[string]$appArch = ''

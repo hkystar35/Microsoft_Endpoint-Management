@@ -56,7 +56,7 @@ Try {
 	##* VARIABLE DECLARATION
 	##*===============================================
 	## Variables: Application
-	[string]$appVendor = 'Paylocity'
+	[string]$appVendor = 'contoso'
 	[string]$appName = 'Disable SMBv1'
 	[string]$appVersion = '1.0'
 	[string]$appArch = ''

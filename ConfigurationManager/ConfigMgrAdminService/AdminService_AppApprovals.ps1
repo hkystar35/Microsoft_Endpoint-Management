@@ -1,5 +1,5 @@
-$cmSiteCode = 'NOR'
-$cmAdminServiceHost = 'sccm-no-01.af.lan'
+$cmSiteCode = ''
+$cmAdminServiceHost = ''
 $cmAdminService_CMG =''
 
 $AppRequestID = 'blah'
