@@ -7,7 +7,7 @@ param (
     [Parameter(Mandatory=$true)]
     [string[]] $Version,
     [string] $Prefix,
-    [string] $PowershellUrl = "https://artifact.paylocity.com/artifactory/api/nuget/powershell"
+    [string] $PowershellUrl = ""
 )
 
 Write-Verbose "Validating parameters"

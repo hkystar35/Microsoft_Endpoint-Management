@@ -10,9 +10,9 @@ param (
     [switch] $Test = $true,
     [switch] $CodeAnalysis = $true,
     [switch] $PrereleaseOverride,
-    [string] $NugetUrl = "https://artifact.paylocity.com/artifactory/api/nuget/nuget",
-    [string] $PowershellUrl = "https://artifact.paylocity.com/artifactory/api/nuget/powershell",
-    [string] $SoftwareUrl = "https://artifact.paylocity.com/artifactory/software"
+    [string] $NugetUrl = "",
+    [string] $PowershellUrl = "",
+    [string] $SoftwareUrl = ""
 )
 
 Set-StrictMode -version Latest
@@ -87,7 +87,7 @@ if (Test-TaskEnabled -Value $true -Name CreateNuget)
     $releaseNote = ""; if (-not [string]::IsNullOrWhiteSpace($ChangesPath)) { $releaseNote = Get-Content $ChangesPath -ErrorAction Stop | Out-String }
     $versionMeta = Build.Scripts\Get-VersionInfo -Version $Version -ReleaseType $ReleaseType$Revision -ErrorAction Stop -Verbose:$verbose
 
-    $psdContent = Get-Content -Path "$outputPath\nugettemp\Paylocity.CyberArk.psd1" -Force -Raw -ErrorAction Stop
+    $psdContent = Get-Content -Path "$outputPath\nugettemp\Cyberark.psd1" -Force -Raw -ErrorAction Stop
     $psdContent = $psdContent.Replace("'0.0.0'", "'$($versionMeta.Major).$($versionMeta.Minor).$($versionMeta.Build)'")
     if (-not [string]::IsNullOrWhiteSpace($versionMeta.Prerelease))
     {
@@ -97,17 +97,17 @@ if (Test-TaskEnabled -Value $true -Name CreateNuget)
     {
         $psdContent = $psdContent.Replace("Prerelease = ''", "")
     }
-    $psdContent | Set-Content -Path "$outputPath\nugettemp\Paylocity.CyberArk.psd1" -ErrorAction Stop
-    $nugetPackageFilePath += Build.Scripts\New-NugetPackage -Id "Paylocity.CyberArk" -Description "Powershell functionality for cyberark" `
+    $psdContent | Set-Content -Path "$outputPath\nugettemp\Cyberark.psd1" -ErrorAction Stop
+    $nugetPackageFilePath += Build.Scripts\New-NugetPackage -Id "Cyberark" -Description "Powershell functionality for cyberark" `
         -Version $Version -ReleaseType $ReleaseType$Revision -FileSource $files -FileTarget $fileTargets -ReleaseNote $releaseNote -Tag "CyberArk" `
         -CreatedBy $CreatedBy -NoPackageAnalysis -OutputPath $outputPath -ErrorAction Stop -Verbose:$verbose
 
     if ($PrereleaseOverride -and -not ([string]::IsNullOrWhiteSpace($versionMeta.Prerelease)))
     {
-        $psdContent = Get-Content -Path "$outputPath\nugettemp\Paylocity.CyberArk.psd1" -Force -Raw -ErrorAction Stop
+        $psdContent = Get-Content -Path "$outputPath\nugettemp\Cyberark.psd1" -Force -Raw -ErrorAction Stop
         $psdContent = $psdContent.Replace("Prerelease = '$($versionMeta.Prerelease)'", "")
-        $psdContent | Set-Content -Path "$outputPath\nugettemp\Paylocity.CyberArk.psd1" -ErrorAction Stop
-        $nugetPackageFilePath += Build.Scripts\New-NugetPackage -Id "Paylocity.CyberArk" -Description "Powershell functionality for cyberark" `
+        $psdContent | Set-Content -Path "$outputPath\nugettemp\Cyberark.psd1" -ErrorAction Stop
+        $nugetPackageFilePath += Build.Scripts\New-NugetPackage -Id "Cyberark" -Description "Powershell functionality for cyberark" `
             -Version $Version -FileSource $files -FileTarget $fileTargets -ReleaseNote $releaseNote -Tag "CyberArk" `
             -CreatedBy $CreatedBy -NoPackageAnalysis -OutputPath $outputPath -ErrorAction Stop -Verbose:$verbose
     }

@@ -10,13 +10,13 @@ There are two primary functions available:
 
 Modules
 ============
-[Paylocity.CyberArk](#Paylocity.CyberArk-module)
+[Cyberark](#Cyberark-module)
 
 
 
-<a id="Paylocity.CyberArk-module"></a>
+<a id="Cyberark-module"></a>
 
-Paylocity.CyberArk
+Cyberark
 
 ---------------
 
@@ -24,21 +24,21 @@ Powershell functionality for cyberark
 
 
 
-[Tests](https://code.paylocity.com/projects/TOOL/repos/paylocity.cyberark/browse/Source/Tests/Paylocity.CyberArk.Tests.ps1?at=refs%2Fheads%2Fmaster)
+[Tests](Tests/CyberArk.Tests.ps1)
 
 
 *Examples*
 ~~~powershell
-Remove-Module Paylocity.CyberArk -Force -ErrorAction Ignore
+Remove-Module Cyberark -Force -ErrorAction Ignore
 
-Import-Module "$env:LOCALAPPDATA\PackageManagement\NuGet\Packages\Paylocity.CyberArk.1.0.0\tools\Paylocity.CyberArk.psm1"
-$result = Paylocity.CyberArk\Verb-Noun
+Import-Module "$env:LOCALAPPDATA\PackageManagement\NuGet\Packages\Cyberark.1.0.0\tools\Cyberark.psm1"
+$result = Cyberark\Verb-Noun
 
 OR
 
-Install-Module -Name Paylocity.CyberArk -RequiredVersion 1.0.0
-Import-Module -Name Paylocity.CyberArk -RequiredVersion 1.0.0
-$result = Paylocity.CyberArk\Verb-Noun
+Install-Module -Name Cyberark -RequiredVersion 1.0.0
+Import-Module -Name Cyberark -RequiredVersion 1.0.0
+$result = Cyberark\Verb-Noun
 ~~~
 
 

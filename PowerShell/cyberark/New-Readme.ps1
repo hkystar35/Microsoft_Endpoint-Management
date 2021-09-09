@@ -5,7 +5,7 @@ param(
 )
 
 # will generate the readme content
-$testUrl = "https://code.paylocity.com/projects/TOOL/repos/paylocity.cyberark/browse/Source/Tests"
+$testUrl = ""
 $branch = "master"
 $sourcePath = Resolve-Path "$PSScriptRoot\Source"
 $readmeFilePath = "$PSScriptRoot\readme.md"
