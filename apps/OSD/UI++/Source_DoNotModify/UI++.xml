@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<UIpp Title="Paylocity" Icon="ORPPIE.ico">
+  <Software>
+    <Application Id="59426C81-2638-47AF-82A7-AFEA795B47B7" Label="Adobe Reader XI" Name="Adobe Reader XI"/>
+    <Application Id="D30B903C-95ED-4AC9-8256-EFADD02FAFF3" Label="Notepad++ v6.6.8" Name="Notepad++ v6.6.8" />
+    <Package Id="9EBF5537-6A81-4651-86D4-4E51C8899F4D" Label=".NET Framework 4.5.2" PkgID="ONE000100" ProgramName="Install .Net 4.5.2" />
+    <Package Id="E6677316-BA46-4553-A8B8-0818875DFADB" Label="Internet Explorer 11" PkgID="ONE000101" ProgramName="Install IE11" />
+    <Application Id="7D2F6F33-38DA-404C-9E10-1A3845BE0270" Label="Royal TS V2" Name="Royal TS V2" />
+    <Application Id="9E30C625-9B5D-480D-AA55-6055F713AE29" Label="Microsoft Office 2013" Name="Microsoft Office 2013" />
+  </Software>
+	<Actions>
+    <!-- <Action Type="UserAuth" Title="User Authentication" Domain="paylocity.com" MaxRetryCount="5"/> -->
+    <Action Type="DefaultValues" />
+    <Action Type="WMIRead" Variable="ComputerName" Namespace="root\cimv2" Class="Win32_ComputerSystem" Property="Name"/>
+	<Action Type="WMIRead" Variable="LenModel" Namespace="root\cimv2" Class="Win32_ComputerSystemProduct" Property="Version"/>
+	<Action Type="WMIRead" Variable="SecureBoot" Namespace="root\wmi" Class="Lenovo_BiosSetting" Property="InstanceName"/>
+    <Action Type="WMIRead" Variable="CurrentTier" Namespace="root\ITLocal" Class="Local_Config" Property="Tier"/>
+    <Action Type="RegRead" Hive="HKLM" Key="SOFTWARE\Microsoft\Windows NT\CurrentVersion" Value="CurrentVersion" Variable="CurrentVersion" />
+    <Action Type="Info" Name="myInfo" Title="Welcome %XAuthenticatedUser%">
+      <![CDATA[UI++ 2.0 includes all of the power of UI++ 1.0 combined with UI App Tree!<br>It's UI, <b>interactive </b>, evolved, and customized.<br>]]>
+    </Action>
+    <Action Type="Input" Name="myInput" Title="Information" Condition='"%XAuthenticatedUser%" = "Jason"'>
+      <TextInput Prompt="Primary Administrator" Hint="Enter the name of primary administrator for this system" RegEx=".*" Variable="PrimaryAdmin" Question="Primary administrator for this system" />
+      <TextInput Prompt="Primary Application or Role" Hint="Enter the name of the primary application on or role for this system" RegEx=".*" Variable="PrimaryApp" Question="Primary application or role for this system" Required="False"/>
+    </Action>
+    <Action Type="Input" Name="myInput" Title="User Input Time">
+      <ChoiceInput Variable="Tier" AlternateVariable="TierB" Question="Please enter the tier for this system" Required="True" Default="%CurrentTier%">
+        <Choice Option="0" Value="0" AlternateValue="A"/>
+        <Choice Option="1" Value="1" AlternateValue="B" />
+        <Choice Option="2" Value="2" AlternateValue="C" />
+        <Choice Option="3" Value="3" AlternateValue="D"  Condition='"%XAuthenticatedUser%" = "Jason"'/>
+        <Choice Option="4" Value="4" AlternateValue="E" />
+      </ChoiceInput>
+    </Action>
+    <Action Type="AppTree" Title="Please choose your software">
+      <SoftwareSets>
+        <Set Name="Default">
+          <SoftwareGroup Id="952025F7-BC5D-4D1C-960C-002B77323479" Label="Group A">
+            <SoftwareGroup Id="07827D9D-8B57-444E-AC86-08D6DF527DC9" Label="Group B">
+              <SoftwareRef Id="59426C81-2638-47AF-82A7-AFEA795B47B7" />
+              <SoftwareRef Id="E6677316-BA46-4553-A8B8-0818875DFADB" />
+            </SoftwareGroup>
+            <SoftwareRef Id="7D2F6F33-38DA-404C-9E10-1A3845BE0270" />
+            <SoftwareRef Id="9E30C625-9B5D-480D-AA55-6055F713AE29" />
+          </SoftwareGroup>
+          <SoftwareRef Id="D30B903C-95ED-4AC9-8256-EFADD02FAFF3" />
+          <SoftwareGroup Id="71354335-19C7-4E12-A3D4-1B48EC91E7B4" Label="Group C">
+            <SoftwareRef Id="9EBF5537-6A81-4651-86D4-4E51C8899F4D" />
+          </SoftwareGroup>
+        </Set>
+      </SoftwareSets>
+    </Action>
+    <Action Type="TSVar" Name="TestVariable"><![CDATA[Left("%XAuthenticatedUserDomain%",2) & Left("%XAuthenticatedUser%",2)]]></Action>
+    <Action Type="WMIWrite" Namespace="root\ITLocal" Class="Local_Config" >
+      <Property Name="ComputerName" Type="CIM_STRING" Value="%ComputerName%" Key="True"/>
+      <Property Name="Tier" Type="CIM_UINT8" Value="%Tier%" Key="False"/>
+    </Action>
+    <Action Type="RegWrite" Hive="HKLM" Key="Software\ConfigMgrFTW" Value="%XAuthenticatedUserDomain%" ValueType="REG_SZ">%XAuthenticatedUser%</Action>
+  </Actions>
+</UIpp>
+
+

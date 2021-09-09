@@ -1,0 +1,39 @@
+<Configuration ID="05c7666b-5111-426f-805c-039ea203cd94">
+	<Info Description="O365 xml for automatic upgrade and replacement of previous Office installs. Ignores Visio and Project." />
+	<Add OfficeClientEdition="64" Channel="Broad" OfficeMgmtCOM="TRUE" Version="16.0.10730.20264" ForceUpgrade="TRUE">
+		<Product ID="O365ProPlusRetail">
+			<Language ID="en-us" />
+			<ExcludeApp ID="Access" />
+			<ExcludeApp ID="Groove" />
+			<ExcludeApp ID="Publisher" />
+		</Product>
+	</Add>
+	<Property Name="SharedComputerLicensing" Value="0" />
+	<Property Name="PinIconsToTaskbar" Value="TRUE" />
+	<Property Name="SCLCacheOverride" Value="0" />
+	<RemoveMSI>
+		<IgnoreProduct ID="PrjPro" />
+		<IgnoreProduct ID="PrjStd" />
+		<IgnoreProduct ID="VisPro" />
+		<IgnoreProduct ID="VisStd" />
+	</RemoveMSI>
+	<AppSettings>
+		<Setup Name="Company" Value="Paylocity Corporation" />
+		<User Key="software\microsoft\office\16.0\common\sharepointintegration" Name="hidelearnmorelink" Value="1" Type="REG_DWORD" App="office16" Id="L_HideTheLearnMoreAboutSharePointHyperlink" />
+		<User Key="software\microsoft\office\16.0\common" Name="sendcustomerdata" Value="0" Type="REG_DWORD" App="office16" Id="L_Sendcustomerdata" />
+		<User Key="software\microsoft\office\16.0\common\ptwatson" Name="ptwoptin" Value="0" Type="REG_DWORD" App="office16" Id="L_ImproveProofingTools" />
+		<User Key="software\microsoft\office\16.0\common\general" Name="shownfirstrunoptin" Value="1" Type="REG_DWORD" App="office16" Id="L_DisableOptinWizard" />
+		<User Key="software\microsoft\office\16.0\common" Name="qmenable" Value="0" Type="REG_DWORD" App="office16" Id="L_EnableCustomerExperienceImprovementProgram" />
+		<User Key="software\microsoft\office\16.0\common" Name="updatereliabilitydata" Value="0" Type="REG_DWORD" App="office16" Id="L_UpdateReliabilityPolicy" />
+		<User Key="software\microsoft\office\16.0\wef\trustedcatalogs" Name="disableomexcatalogs" Value="1" Type="REG_DWORD" App="office16" Id="L_DisableOfficeStore" />
+		<User Key="software\microsoft\office\16.0\wef\trustedcatalogs" Name="disableallcatalogs" Value="1" Type="REG_DWORD" App="office16" Id="L_DisableAllCatalogs" />
+		<User Key="software\microsoft\office\16.0\osm" Name="enableupload" Value="0" Type="REG_DWORD" App="office16" Id="L_OfficeInventoryAgentUpload" />
+		<User Key="software\microsoft\office\16.0\common\feedback" Name="enabled" Value="0" Type="REG_DWORD" App="office16" Id="L_SendFeedback" />
+		<User Key="software\microsoft\office\16.0\common\general" Name="disableboottoofficestart" Value="1" Type="REG_DWORD" App="office16" Id="L_DisableOfficeStartGlobal" />
+		<User Key="software\microsoft\office\16.0\common" Name="autoorgidgetkey" Value="1" Type="REG_DWORD" App="office16" Id="L_AutoOrgIDGetKey" />
+		<User Key="software\microsoft\office\16.0\outlook\options\webext" Name="storebuttoninribbonhometaballowed" Value="0" Type="REG_DWORD" App="outlk16" Id="L_HideAppsStoreButtonInHomeTabRibbon" />
+		<User Key="software\microsoft\office\16.0\outlook\pst" Name="pstdisablegrow" Value="1" Type="REG_DWORD" App="outlk16" Id="L_Preventusersfromaddingnewcontentto" />
+	</AppSettings>
+	<Display Level="None" AcceptEULA="TRUE" />
+	<Logging Level="Standard" Path="%windir%\Logs\Software\Office" />
+</Configuration>

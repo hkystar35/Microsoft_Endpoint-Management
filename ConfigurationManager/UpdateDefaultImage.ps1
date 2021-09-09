@@ -1,0 +1,1 @@
+﻿Get-WmiObject -Namespace "root\SMS\site_PAY" -Class "SMS_BootImagePackage" -Filter "PackageId='PAY002AA'" | Invoke-WmiMethod -Name UpdateDefaultImage

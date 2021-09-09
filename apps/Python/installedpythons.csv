@@ -1,0 +1,63 @@
+InstallSource,UninstallString,UninstallSubkey,InstallLocation,ProductCode,Is64BitApplication,Publisher,InstallDate,DisplayVersion,DisplayName
+C:\ProgramData\Package Cache\{7AE9CB7B-2721-4E3C-9472-CF4EBFA04613}v3.6.6150.0\,MsiExec.exe /I{7AE9CB7B-2721-4E3C-9472-CF4EBFA04613},{7AE9CB7B-2721-4E3C-9472-CF4EBFA04613},,{7AE9CB7B-2721-4E3C-9472-CF4EBFA04613},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Add to Path (64-bit)
+C:\ProgramData\Package Cache\{13428472-D58E-476D-932F-5B1B0C1397BE}v3.6.6150.0\,MsiExec.exe /I{13428472-D58E-476D-932F-5B1B0C1397BE},{13428472-D58E-476D-932F-5B1B0C1397BE},,{13428472-D58E-476D-932F-5B1B0C1397BE},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Core Interpreter (64-bit)
+C:\ProgramData\Package Cache\{C4752757-9240-4518-BE22-A7E2E7CC7D7B}v3.6.6150.0\,MsiExec.exe /I{C4752757-9240-4518-BE22-A7E2E7CC7D7B},{C4752757-9240-4518-BE22-A7E2E7CC7D7B},,{C4752757-9240-4518-BE22-A7E2E7CC7D7B},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Development Libraries (64-bit)
+C:\ProgramData\Package Cache\{16EF5AB7-4A89-4F06-B20B-209DA4FE0533}v3.6.6150.0\,MsiExec.exe /I{16EF5AB7-4A89-4F06-B20B-209DA4FE0533},{16EF5AB7-4A89-4F06-B20B-209DA4FE0533},,{16EF5AB7-4A89-4F06-B20B-209DA4FE0533},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Documentation (64-bit)
+C:\ProgramData\Package Cache\{5CE3EB5B-1823-4B8E-BE10-95262BDD1148}v3.6.6150.0\,MsiExec.exe /I{5CE3EB5B-1823-4B8E-BE10-95262BDD1148},{5CE3EB5B-1823-4B8E-BE10-95262BDD1148},,{5CE3EB5B-1823-4B8E-BE10-95262BDD1148},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Executables (64-bit)
+C:\ProgramData\Package Cache\{9D8D733D-3822-4808-B382-6291910081B2}v3.6.6150.0\,MsiExec.exe /I{9D8D733D-3822-4808-B382-6291910081B2},{9D8D733D-3822-4808-B382-6291910081B2},,{9D8D733D-3822-4808-B382-6291910081B2},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 pip Bootstrap (64-bit)
+C:\ProgramData\Package Cache\{4D137679-6FB4-446B-9BDB-279292FA2D2C}v3.6.6150.0\,MsiExec.exe /I{4D137679-6FB4-446B-9BDB-279292FA2D2C},{4D137679-6FB4-446B-9BDB-279292FA2D2C},,{4D137679-6FB4-446B-9BDB-279292FA2D2C},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Standard Library (64-bit)
+C:\ProgramData\Package Cache\{44EC13CA-E201-433B-B2D3-386B9609B859}v3.6.6150.0\,MsiExec.exe /I{44EC13CA-E201-433B-B2D3-386B9609B859},{44EC13CA-E201-433B-B2D3-386B9609B859},,{44EC13CA-E201-433B-B2D3-386B9609B859},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Tcl/Tk Support (64-bit)
+C:\ProgramData\Package Cache\{C9596636-022D-4123-B369-98819F772985}v3.6.6150.0\,MsiExec.exe /I{C9596636-022D-4123-B369-98819F772985},{C9596636-022D-4123-B369-98819F772985},,{C9596636-022D-4123-B369-98819F772985},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Test Suite (64-bit)
+C:\ProgramData\Package Cache\{E95CEC86-EFB3-47B8-A5F6-C8FB757AD060}v3.6.6150.0\,MsiExec.exe /I{E95CEC86-EFB3-47B8-A5F6-C8FB757AD060},{E95CEC86-EFB3-47B8-A5F6-C8FB757AD060},,{E95CEC86-EFB3-47B8-A5F6-C8FB757AD060},TRUE,Python Software Foundation,20180720,3.6.6150.0,Python 3.6.6 Utility Scripts (64-bit)
+C:\ProgramData\Package Cache\{A9DED8BE-05DF-45D5-81A0-3743A44CC0C9}v3.6.6386.0\,MsiExec.exe /X{A9DED8BE-05DF-45D5-81A0-3743A44CC0C9},{A9DED8BE-05DF-45D5-81A0-3743A44CC0C9},,{A9DED8BE-05DF-45D5-81A0-3743A44CC0C9},FALSE,Python Software Foundation,20180720,3.6.6386.0,Python Launcher
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,,,,,,,,,
+,"Customer Service Computers,OU=Customer Service Computers,OU=Customer Service,OU=Headquarters,DC=paylocity,DC=com",,,,,,,,
+,"Development Computers,OU=Development Computers,OU=Development,OU=Headquarters,DC=paylocity,DC=com          ",,,,,,,,
+,,,,,,,,,
+,Customer Service Computers,OU=Customer Service Computers,OU=Customer Service,OU=Headquarters,DC=paylocity,DC=com,,,
+,Development Computers,OU=Development Computers,OU=Development,OU=Headquarters,DC=paylocity,DC=com          ,,,
+,Disabled Computers,OU=Disabled Computers,OU=Disabled,DC=paylocity,DC=com                                ,,,,
+,Distribution Computers,OU=Distribution Computers,OU=Distribution,OU=Headquarters,DC=paylocity,DC=com        ,,,
+,Finance Computers,OU=Finance Computers,OU=Finance,OU=Headquarters,DC=paylocity,DC=com                  ,,,
+,HR Computers,OU=HR Computers,OU=HR,OU=Headquarters,DC=paylocity,DC=com                            ,,,
+,Implementation Computers,OU=Implementation Computers,OU=Implementation,OU=Headquarters,DC=paylocity,DC=com    ,,,
+,InfoSec Computers,OU=InfoSec Computers,OU=InfoSec,OU=Headquarters,DC=paylocity,DC=com                  ,,,
+,IT Computers,OU=IT Computers,OU=IT,OU=Headquarters,DC=paylocity,DC=com                            ,,,
+,Learning Computers,OU=Learning Computers,OU=Learning,OU=Headquarters,DC=paylocity,DC=com                ,,,
+,Recruiting Computers,OU=Recruiting Computers,OU=Recruiting,OU=Headquarters,DC=paylocity,DC=com            ,,,
+,Sales Computers,OU=Sales Computers,OU=Sales,OU=Headquarters,DC=paylocity,DC=com                      ,,,
+,Tax Computers,OU=Tax Computers,OU=Tax,OU=Headquarters,DC=paylocity,DC=com                          ,,,
+,Tech Services Computers,OU=Tech Services Computers,OU=Tech Services,OU=Headquarters,DC=paylocity,DC=com      ,,,
+,Time and Labor Computers,OU=Time and Labor Computers,OU=Time and Labor,OU=Headquarters,DC=paylocity,DC=com    ,,,
+,Training Room Computers,OU=Training Room Computers,OU=IT,OU=Headquarters,DC=paylocity,DC=com,,,

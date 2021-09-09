@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<dpInst>
+	<!--<suppressWizard/>
+	<quietInstallStrict/>-->
+
+	<language code="0x0409">
+		<dpinstTitle>PCTY Driver Installer</dpinstTitle>
+
+		<welcomeTitle>Welcome to the PCTY Driver Install Utility</welcomeTitle>
+
+		<welcomeIntro>This wizard will install Paylocity-approved drivers to your system.</welcomeIntro>
+
+		<installHeaderTitle>Installing the software for your PCTY device...</installHeaderTitle>
+	  
+		<finishTitle>Congratulations! You are finished installing your PCTY device.</finishTitle>
+	  
+		<finishText>Drivers are now installed for your PCTY device.</finishText>
+	</language>
+	<search>
+		<subDirectory>*</subDirectory>
+	</search>
+</dpInst>

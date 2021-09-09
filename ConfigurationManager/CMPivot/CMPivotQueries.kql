@@ -1,0 +1,18 @@
+// Installed Software
+InstalledSoftware
+| where ProductName startswith 'Google' | project Device, ProductName, ProductVersion
+| join (Services | where name == 'Windefend' | project DisplayName, State, Status, StartMode)
+
+InstalledSoftware
+| where ProductName startswith 'Google' | project Device, ProductName, ProductVersion
+| join (Services | where name == 'Windefend' | project Device, DisplayName, State, Status, StartMode)
+
+Services 
+| where name == 'Windefend' | project Device, DisplayName, State, Status, StartMode
+| join (InstalledSoftware | where ProductName == 'Trend Micro OfficeScan Agent' or ProductName like 'Rockwell%' | project Device, ProductName, ProductVersion)
+
+
+// Office channel summary
+OfficeProductInfo
+| summarize count() by Channel, ProductName
+| where Channel != 'Unknown'

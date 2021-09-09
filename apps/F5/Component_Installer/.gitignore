@@ -1,0 +1,14 @@
+*.exe
+*.exe.config
+
+/AppDeployToolkit/*
+!/AppDeployToolkit/AppDeployToolkitExtensions.ps1
+!/AppDeployToolkit/AppDeployToolkitConfig.xml
+
+/Files/*.exe
+/Files/*.msi
+/Files/*.msp
+
+/SupportFiles/*.exe
+/SupportFiles/*.msi
+/SupportFiles/*.msp
