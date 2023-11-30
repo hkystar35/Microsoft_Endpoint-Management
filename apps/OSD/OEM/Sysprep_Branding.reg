@@ -1,8 +1,0 @@
-Windows Registry Editor Version 5.00
-
-[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\OEMInformation]
-"Logo"="C\\WINDOWS\\oem\\OEMlogo.bmp"
-"Manufacturer"="contoso Corp, EUC Engineering"
-"Model"="Windows 10 Ent Image 2018-01-08"
-"SupportHours"="6am to 8pm ET M-F"
-"SupportURL"="https://employee.contoso.com"

@@ -24,27 +24,7 @@ MAC_Addresses0 like '%$MACADDRESS%'
     $SQLResults
 }
 
-<#
-$MACaddresses = '3C:18:A0:10:15:42',
-'3C:18:A0:0F:DF:5F',
-'3C:18:A0:0F:DE:5C',
-'3C:18:A0:0F:DD:D9',
-'3C:18:A0:0F:DF:5A',
-'3C:18:A0:0F:D8:EE',
-'3C:18:A0:0F:DF:8B',
-'3C:18:A0:0F:DF:68',
-'3C:18:A0:0F:DF:46',
-'3C:18:A0:0F:DF:6D',
-'3C:18:A0:02:FB:4F',
-'A0:CE:C8:0C:15:9D',
-'00:24:9B:1E:61:5C',
-'58:EF:68:C2:9C:09',
-'3C:18:A0:10:44:1C',
-'3C:18:A0:10:43:DF',
-'3C:18:A0:10:53:95',
-'3C:18:A0:10:43:EC',
-'3C:18:A0:10:44:2D'
-#>
+
 
 $MACaddresses = Read-Host -Prompt "MAC Address"
 
